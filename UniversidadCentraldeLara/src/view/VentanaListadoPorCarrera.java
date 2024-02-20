@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -68,6 +69,7 @@ public class VentanaListadoPorCarrera extends JFrame {
 		panel_2.add(lblCarrera);
 		
 		txtCarrera = new JTextField();
+		txtCarrera.setPreferredSize(new Dimension(450,25));
 		panel_2.add(txtCarrera);
 		txtCarrera.setColumns(10);
 		
