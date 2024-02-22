@@ -1,3 +1,8 @@
+/*
+Javier Bravo 27.736.325
+Dehucarlys Azuaje 25.149.300
+Isivet Montero 28.020.215
+*/
 CREATE DATABASE UniversidadCentraldeLara
     WITH
     OWNER = postgres

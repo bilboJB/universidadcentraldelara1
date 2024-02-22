@@ -1,3 +1,10 @@
+/*
+Javier Bravo 27.736.325
+Dehucarlys Azuaje 25.149.300
+Isivet Montero 28.020.215
+Nairym González 28.206.840
+Alexis Acuña 26.305.133
+*/
 package controller;
 
 import view.VentanaListadoPorCarrera;
@@ -22,6 +29,7 @@ public class ControladorVentanaListadoPorCarrera implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
 		if(e.getActionCommand().equalsIgnoreCase("Generar Listado")) {
 			//refresca el modelo al default
 			ventanaListadoPorCarrera.setModelo(new DefaultTableModel(new Object[][] {}, ventanaListadoPorCarrera.getColumnas()) {
@@ -33,12 +41,16 @@ public class ControladorVentanaListadoPorCarrera implements ActionListener{
 				}
 			});
 			//intentar conectar a la base de datos
-			try(Connection con = DriverManager.getConnection(url,user,password);){
+			Connection con = null;
+			PreparedStatement pS = null;
+			ResultSet result = null;
+			try{
+				con = DriverManager.getConnection(url,user,password);
 				//crea el statement sql
-				PreparedStatement pS = con.prepareStatement("SELECT nombre_estudiante, nombre_carrera FROM \"Estudiante\" INNER JOIN \"Carrera\" ON \"Estudiante\".carrera = \"Carrera\".id_carrera WHERE nombre_carrera = ?;");
+				pS = con.prepareStatement("SELECT nombre_estudiante, nombre_carrera FROM \"Estudiante\" INNER JOIN \"Carrera\" ON \"Estudiante\".carrera = \"Carrera\".id_carrera WHERE nombre_carrera = ?;");
 				pS.setString(1, ventanaListadoPorCarrera.getTxtCarrera().getText());
 				//se ejecuta el sql y se guarda el resultado
-				ResultSet result = pS.executeQuery();
+				result = pS.executeQuery();
 				while(result.next()) {
 					//mientras haya una fila en el resultado se adjunta a la tabla
 					ventanaListadoPorCarrera.getModelo().addRow(new Object[] {result.getString(1), result.getString(2)});
@@ -46,6 +58,12 @@ public class ControladorVentanaListadoPorCarrera implements ActionListener{
 			}
 			catch (SQLException ex) {
 				ex.printStackTrace();
+			}
+			finally {
+				//cierra todo
+				try { if (result != null) result.close(); } catch (Exception ex) {};
+			    try { if (pS != null) pS.close(); } catch (Exception ex) {};
+			    try { if (con != null) con.close(); } catch (Exception ex) {};
 			}
 			ventanaListadoPorCarrera.getTable().setModel(ventanaListadoPorCarrera.getModelo());
 		}
