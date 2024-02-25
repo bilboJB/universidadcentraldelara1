@@ -7,12 +7,14 @@ Alexis Acuña 26.305.133
 */
 package model;
 
+import java.time.LocalDate;
+
 public class Estudiante extends Persona{
     private Seccion[] secciones;
 
-    public Estudiante(String nombreCompleto, String cedula, Seccion[] secciones) {
-        super(nombreCompleto, cedula);
-        this.secciones = secciones;
+    public Estudiante(String n, String c, String t, LocalDate f, char g, Seccion[] s) {
+        super(n, c, t, f, g);
+        this.secciones = s;
     }
 
     public void solicitarRetiro(){
@@ -25,5 +27,8 @@ public class Estudiante extends Persona{
 
     public void setSecciones(Seccion[] secciones) {
         this.secciones = secciones;
+    }
+    public void solicitarRetiro(Seccion s) {
+    	
     }
 }

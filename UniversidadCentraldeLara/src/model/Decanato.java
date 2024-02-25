@@ -9,13 +9,15 @@ package model;
 
 public class Decanato {
     private Carrera[] carreras;
-    private String periodoAcademico;
     private String nombreDecanato;
-    
-    public Decanato(Carrera[] carreras, String periodoAcademico, String nombreDecanato) {
-        this.carreras = carreras;
-        this.periodoAcademico = periodoAcademico;
-        this.nombreDecanato = nombreDecanato;
+    private String direccionDecanato;
+    private String tlfDecanato;
+
+    public Decanato(Carrera[] c, String d, String n, String t) {
+        this.carreras = c;
+        this.direccionDecanato = d;
+        this.nombreDecanato = n;
+        this.tlfDecanato = t;
     }
 
     public Carrera[] getCarreras() {
@@ -26,14 +28,6 @@ public class Decanato {
         this.carreras = carreras;
     }
 
-    public String getPeriodoAcademico() {
-        return periodoAcademico;
-    }
-
-    public void setPeriodoAcademico(String periodoAcademico) {
-        this.periodoAcademico = periodoAcademico;
-    }
-
     public String getNombreDecanato() {
         return nombreDecanato;
     }
@@ -41,5 +35,21 @@ public class Decanato {
     public void setNombreDecanato(String nombreDecanato) {
         this.nombreDecanato = nombreDecanato;
     }
+
+	public String getDireccionDecanato() {
+		return direccionDecanato;
+	}
+
+	public void setDireccionDecanato(String direccionDecanato) {
+		this.direccionDecanato = direccionDecanato;
+	}
+
+	public String getTlfDecanato() {
+		return tlfDecanato;
+	}
+
+	public void setTlfDecanato(String tlfDecanato) {
+		this.tlfDecanato = tlfDecanato;
+	}
     
 }

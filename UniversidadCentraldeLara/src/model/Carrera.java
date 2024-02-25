@@ -11,9 +11,9 @@ public class Carrera {
     private Asignatura[] asignaturas;
     private String nombreCarrera;
     
-    public Carrera(Asignatura[] asignaturas, String nombreCarrera) {
-        this.asignaturas = asignaturas;
-        this.nombreCarrera = nombreCarrera;
+    public Carrera(Asignatura[] a, String nc) {
+        this.asignaturas = a;
+        this.nombreCarrera = nc;
     }
 
     public Asignatura[] getAsignaturas() {

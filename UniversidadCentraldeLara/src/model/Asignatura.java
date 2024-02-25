@@ -11,9 +11,9 @@ public class Asignatura {
     private Seccion[] secciones;
     private String nombreAsignatura;
 
-    public Asignatura(Seccion[] secciones, String nombreAsignatura) {
-        this.secciones = secciones;
-        this.nombreAsignatura = nombreAsignatura;
+    public Asignatura(Seccion[] s, String na) {
+        this.secciones = s;
+        this.nombreAsignatura = na;
     }
 
     public Seccion[] getSecciones() {

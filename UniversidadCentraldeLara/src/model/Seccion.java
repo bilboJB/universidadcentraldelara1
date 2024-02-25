@@ -11,11 +11,13 @@ public class Seccion {
     private Profesor profesor;
     private Estudiante[] estudiantes;
     private String codigoSeccion;
+    private PeriodoAcademico periodoSeccion;
     
-    public Seccion(Profesor profesor, Estudiante[] estudiantes, String codigoSeccion) {
-        this.profesor = profesor;
-        this.estudiantes = estudiantes;
-        this.codigoSeccion = codigoSeccion;
+    public Seccion(Profesor p, Estudiante[] e, String c, PeriodoAcademico pa) {
+        this.profesor = p;
+        this.estudiantes = e;
+        this.codigoSeccion = c;
+        this.periodoSeccion = pa;
     }
 
     public Profesor getProfesor() {
@@ -41,4 +43,13 @@ public class Seccion {
     public void setCodigoSeccion(String codigoSeccion) {
         this.codigoSeccion = codigoSeccion;
     }
+
+	public PeriodoAcademico getPeriodoSeccion() {
+		return periodoSeccion;
+	}
+
+	public void setPeriodoSeccion(PeriodoAcademico periodoSeccion) {
+		this.periodoSeccion = periodoSeccion;
+	}
+    
 }

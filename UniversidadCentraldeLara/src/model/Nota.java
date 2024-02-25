@@ -10,12 +10,14 @@ package model;
 public class Nota {
     private Estudiante estudiante;
     private Seccion seccion;
-    private float valor;
+    private float[] valor;
+    private PeriodoAcademico periodoNota;
     
-    public Nota(Estudiante estudiante, Seccion seccion, float valor) {
-        this.estudiante = estudiante;
-        this.seccion = seccion;
-        this.valor = valor;
+    public Nota(Estudiante e, Seccion s, float[] v, PeriodoAcademico pn) {
+        this.estudiante = e;
+        this.seccion = s;
+        this.valor = v;
+        this.periodoNota = pn;
     }
 
     public Estudiante getEstudiante() {
@@ -34,11 +36,20 @@ public class Nota {
         this.seccion = seccion;
     }
 
-    public float getValor() {
+    public float[] getValor() {
         return valor;
     }
 
-    public void setValor(float valor) {
+    public void setValor(float[] valor) {
         this.valor = valor;
     }
+
+	public PeriodoAcademico getPeriodoNota() {
+		return periodoNota;
+	}
+
+	public void setPeriodoNota(PeriodoAcademico periodoNota) {
+		this.periodoNota = periodoNota;
+	}
+    
 }

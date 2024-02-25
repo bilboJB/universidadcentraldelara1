@@ -10,8 +10,8 @@ package model;
 public class Universidad {
     private Decanato[] decanatos;
 
-    public Universidad(Decanato[] decanatos) {
-        this.decanatos = decanatos;
+    public Universidad(Decanato[] d) {
+        this.decanatos = d;
     }
     public void generarListado(Decanato decanato){
 
@@ -19,7 +19,7 @@ public class Universidad {
     public Decanato[] getDecanatos() {
         return decanatos;
     }
-    public void setDecanatos(Decanato[] decanatos) {
-        this.decanatos = decanatos;
+    public void setDecanatos(Decanato[] d) {
+        this.decanatos = d;
     }
 }

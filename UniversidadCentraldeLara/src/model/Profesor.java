@@ -7,12 +7,14 @@ Alexis Acuña 26.305.133
 */
 package model;
 
+import java.time.LocalDate;
+
 public class Profesor extends Persona{
     private Seccion[] secciones;
 
-    public Profesor(String nombreCompleto, String cedula, Seccion[] secciones) {
-        super(nombreCompleto, cedula);
-        this.secciones = secciones;
+    public Profesor(String n, String c, String t, LocalDate f, char g, Seccion[] s) {
+        super(n, c, t, f,g);
+        this.secciones = s;
     }  
     public Nota generarNota(Seccion seccion, Estudiante estudiante, float valor){
         //posiblemente cambie
