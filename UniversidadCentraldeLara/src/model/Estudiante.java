@@ -29,6 +29,10 @@ public class Estudiante extends Persona{
         this.secciones = secciones;
     }
     public void solicitarRetiro(Seccion s) {
-    	
+    	for(Seccion seccion: secciones) {
+    		if(s.equals(seccion)) {
+    			seccion = null;
+    		}
+    	}
     }
 }

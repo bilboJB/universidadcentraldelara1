@@ -16,9 +16,9 @@ public class Profesor extends Persona{
         super(n, c, t, f,g);
         this.secciones = s;
     }  
-    public Nota generarNota(Seccion seccion, Estudiante estudiante, float valor){
-        //posiblemente cambie
-        return null;
+    public Nota generarNota(Seccion seccion, Estudiante estudiante, float[] valor, PeriodoAcademico periodo){
+        Nota nota = new Nota(estudiante,seccion,valor,periodo);
+    	return nota;
     }
     public Seccion[] getSecciones() {
         return secciones;
