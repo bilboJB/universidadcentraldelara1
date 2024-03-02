@@ -117,15 +117,32 @@ ALTER TABLE IF EXISTS public."Estudiante"
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
-INSERT INTO public."Decanato"(
-	id_decanato, nombre)
-	VALUES ('DCYT', 'Ciencias y tecnologia');
-INSERT INTO public."Carrera"(
-	id_carrera, nombre_carrera, decanato)
-	VALUES ('caINFO', 'Ingenieria informatica', 'DCYT');
-INSERT INTO public."Carrera"(
-	id_carrera, nombre_carrera, decanato)
-	VALUES ('caMATE', 'Licenciatura en Matematicas', 'DCYT');
-INSERT INTO public."Estudiante"(
-	id_estudiante, cedula_estudiante, nombre_estudiante, genero_estudiante, carrera)
-	VALUES ('ed1', '28000000', 'Juan Perez', 'M', 'caINFO');
+ALTER TABLE IF EXISTS public."Decanato"
+    RENAME nombre TO nombre_decanato;
+
+ALTER TABLE IF EXISTS public."Decanato"
+    ADD COLUMN direccion_decanato character varying(100);
+
+ALTER TABLE IF EXISTS public."Decanato"
+    ADD COLUMN tlf_decanato character varying(11);
+ALTER TABLE public."Seccion"
+    ALTER COLUMN periodo TYPE character varying(6) COLLATE pg_catalog."default";
+ALTER TABLE IF EXISTS public."Seccion"
+	ADD CONSTRAINT periodo FOREIGN KEY (periodo)
+	REFERENCES public."PeriodoAcademico" (codigo_periodo)
+	ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+ALTER TABLE IF EXISTS public."Estudiante"
+    ADD COLUMN tlf_estudiante character varying(11);
+
+ALTER TABLE IF EXISTS public."Estudiante"
+    ADD COLUMN fecha_nacimiento date;
+DELETE FROM public."Estudiante"
+	WHERE 1=1;
+DELETE FROM public."Seccion"
+	WHERE 1=1;
+DELETE FROM public."Carrera"
+	WHERE 1=1;
+DELETE FROM public."Decanato"
+	WHERE 1=1;
