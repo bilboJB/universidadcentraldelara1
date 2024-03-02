@@ -14,16 +14,19 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+
+import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import java.awt.Dimension;
 
-public class Inscripcion extends JFrame {
+public class VentanaInscripcion extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -34,6 +37,8 @@ public class Inscripcion extends JFrame {
 	private JTable table;
 	private JTextField textPeriodoAcad;
 	private JTable tablaInscrpcion;
+	private JComboBox<String> combo;
+	private DefaultTableModel modeloTabla;
 
 	/**
 	 * Launch the application.
@@ -42,7 +47,7 @@ public class Inscripcion extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Inscripcion frame = new Inscripcion();
+					VentanaInscripcion frame = new VentanaInscripcion();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +59,7 @@ public class Inscripcion extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Inscripcion() {
+	public VentanaInscripcion() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1030, 700);
 		contentPane = new JPanel();
@@ -70,7 +75,7 @@ public class Inscripcion extends JFrame {
 		
 		JLabel inscripcion = new JLabel("Inscripción");
 		inscripcion.setBounds(39, 46, 390, 81);
-		inscripcion.setIcon(new ImageIcon(Inscripcion.class.getResource("/iconos/inscripcion.png")));
+		inscripcion.setIcon(new ImageIcon(VentanaInscripcion.class.getResource("/iconos/inscripcion.png")));
 		inscripcion.setFont(new Font("Segoe UI", Font.BOLD, 60));
 		panel.add(inscripcion);
 		
@@ -80,8 +85,8 @@ public class Inscripcion extends JFrame {
 		panel.add(cedula);
 		
 		textCedula = new JTextField();
+		textCedula.setToolTipText("ingrese la cedula");
 		textCedula.setBounds(20, 212, 158, 32);
-		textCedula.setText("ingrese la cedula");
 		textCedula.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		textCedula.setColumns(10);
 		textCedula.setBackground(new Color(224, 255, 255));
@@ -93,6 +98,7 @@ public class Inscripcion extends JFrame {
 		panel.add(lblNombre);
 		
 		textNombre = new JTextField();
+		textNombre.setEditable(false);
 		textNombre.setBounds(255, 212, 186, 32);
 		textNombre.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		textNombre.setColumns(10);
@@ -105,6 +111,7 @@ public class Inscripcion extends JFrame {
 		panel.add(lblApellido);
 		
 		textApellido = new JTextField();
+		textApellido.setEditable(false);
 		textApellido.setBounds(485, 212, 196, 32);
 		textApellido.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		textApellido.setColumns(10);
@@ -117,6 +124,7 @@ public class Inscripcion extends JFrame {
 		panel.add(lblCarrera);
 		
 		textCarrera = new JTextField();
+		textCarrera.setEditable(false);
 		textCarrera.setBounds(713, 212, 291, 32);
 		textCarrera.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		textCarrera.setColumns(10);
@@ -125,7 +133,7 @@ public class Inscripcion extends JFrame {
 		
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.setBounds(413, 559, 210, 65);
-		btnGuardar.setIcon(new ImageIcon(Inscripcion.class.getResource("/iconos/iconGuardar.png")));
+		btnGuardar.setIcon(new ImageIcon(VentanaInscripcion.class.getResource("/iconos/iconGuardar.png")));
 		btnGuardar.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		btnGuardar.setBackground(Color.BLACK);
 		panel.add(btnGuardar);
@@ -158,31 +166,49 @@ public class Inscripcion extends JFrame {
 		table.getColumnModel().getColumn(1).setResizable(false);
 		scrollPane.setColumnHeaderView(table);
 		
+		combo = new JComboBox<String>(new String[] {"1","2"});
 		tablaInscrpcion = new JTable();
 		tablaInscrpcion.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		tablaInscrpcion.setShowVerticalLines(false);
 		tablaInscrpcion.setShowHorizontalLines(false);
 		tablaInscrpcion.setShowGrid(false);
-		tablaInscrpcion.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-			},
-			new String[] {
-				"Asignaturas", "Secci\u00F3n"
-			}
-		));
+		modeloTabla = new DefaultTableModel(
+				new Object[][] {
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+				},
+				new String[] {
+					"", "Asignaturas", "Secci\u00F3n"
+				}
+			) {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = -5866929548135962087L;
+				Class[] columnTypes = new Class[] {
+					Boolean.class, Object.class, Object.class
+				};
+				public Class getColumnClass(int columnIndex) {
+					return columnTypes[columnIndex];
+				}
+				boolean[] columnEditables = new boolean[] {
+					true, false, true
+				};
+				public boolean isCellEditable(int row, int column) {
+					return columnEditables[column];
+				}
+			};
+		tablaInscrpcion.setModel(modeloTabla);
+		tablaInscrpcion.getColumnModel().getColumn(0).setPreferredWidth(35);
+		tablaInscrpcion.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(combo));
 		scrollPane.setViewportView(tablaInscrpcion);
 		
 		JLabel lblPeriodoAcad = new JLabel("Periodo Académico");
@@ -191,6 +217,7 @@ public class Inscripcion extends JFrame {
 		panel.add(lblPeriodoAcad);
 		
 		textPeriodoAcad = new JTextField();
+		textPeriodoAcad.setEditable(false);
 		textPeriodoAcad.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		textPeriodoAcad.setColumns(10);
 		textPeriodoAcad.setBackground(new Color(224, 255, 255));
@@ -198,18 +225,18 @@ public class Inscripcion extends JFrame {
 		panel.add(textPeriodoAcad);
 		
 		JButton btnVolver = new JButton("");
-		btnVolver.setIcon(new ImageIcon(Inscripcion.class.getResource("/iconos/iconsVolver30.png")));
+		btnVolver.setIcon(new ImageIcon(VentanaInscripcion.class.getResource("/iconos/iconsVolver30.png")));
 		btnVolver.setBounds(10, 11, 44, 28);
 		panel.add(btnVolver);
 		
 		JButton btnMinimizar = new JButton("");
-		btnMinimizar.setIcon(new ImageIcon(Inscripcion.class.getResource("/iconos/btn-minimizar.png")));
+		btnMinimizar.setIcon(new ImageIcon(VentanaInscripcion.class.getResource("/iconos/btn-minimizar.png")));
 		btnMinimizar.setBackground(Color.BLACK);
 		btnMinimizar.setBounds(902, 11, 44, 29);
 		panel.add(btnMinimizar);
 		
 		JButton btnSalir = new JButton("");
-		btnSalir.setIcon(new ImageIcon(Inscripcion.class.getResource("/iconos/btn-cerrar.png")));
+		btnSalir.setIcon(new ImageIcon(VentanaInscripcion.class.getResource("/iconos/btn-cerrar.png")));
 		btnSalir.setBackground(Color.BLACK);
 		btnSalir.setBounds(948, 11, 44, 29);
 		panel.add(btnSalir);
@@ -221,13 +248,52 @@ public class Inscripcion extends JFrame {
 		panel.add(btnMenuPrincipal);
 		
 		JButton btnBuscarCedula = new JButton("");
-		btnBuscarCedula.setIcon(new ImageIcon(Inscripcion.class.getResource("/iconos/iconsLupa30.png")));
+		btnBuscarCedula.setIcon(new ImageIcon(VentanaInscripcion.class.getResource("/iconos/iconsLupa30.png")));
 		btnBuscarCedula.setBounds(181, 212, 44, 38);
 		panel.add(btnBuscarCedula);
 		
 		JLabel fondo = new JLabel("");
-		fondo.setIcon(new ImageIcon(Inscripcion.class.getResource("/iconos/fondoMenu.jpg")));
+		fondo.setIcon(new ImageIcon(VentanaInscripcion.class.getResource("/iconos/fondoMenu.jpg")));
 		fondo.setBounds(0, 0, 1014, 661);
 		panel.add(fondo);
 	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
+	public DefaultTableModel getModeloTabla() {
+		return modeloTabla;
+	}
+
+	public void setModeloTabla(DefaultTableModel modeloTabla) {
+		this.modeloTabla = modeloTabla;
+	}
+
+	public JTextField getTextCedula() {
+		return textCedula;
+	}
+
+	public JTextField getTextNombre() {
+		return textNombre;
+	}
+
+	public JTextField getTextApellido() {
+		return textApellido;
+	}
+
+	public JTextField getTextCarrera() {
+		return textCarrera;
+	}
+
+	public JTextField getTextPeriodoAcad() {
+		return textPeriodoAcad;
+	}
+	
 }
+
+
