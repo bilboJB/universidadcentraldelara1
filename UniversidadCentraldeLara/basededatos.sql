@@ -146,3 +146,47 @@ DELETE FROM public."Carrera"
 	WHERE 1=1;
 DELETE FROM public."Decanato"
 	WHERE 1=1;
+ALTER TABLE public."Decanato"
+    ALTER COLUMN nombre_decanato TYPE character varying(80) COLLATE pg_catalog."default";
+INSERT INTO public."Decanato"(
+	id_decanato, nombre_decanato, direccion_decanato, tlf_decanato)
+	VALUES ('de1001','Ciencias Economicas y Empresariales' , 'Calle 8 entre 19 y 20', '02512591419');
+INSERT INTO public."Decanato"(
+	id_decanato, nombre_decanato, direccion_decanato, tlf_decanato)
+	VALUES ('de1000','Ciencias y Tecnologia' , 'Avenida las Industrias', '02512591450');
+INSERT INTO public."Carrera"(
+	id_carrera, nombre_carrera, decanato)
+	VALUES ('ca1001', 'Ingenieria informatica', 'de1000');
+INSERT INTO public."Carrera"(
+	id_carrera, nombre_carrera, decanato)
+	VALUES ('ca1002', 'Licenciatura Matematicas', 'de1000');
+INSERT INTO public."Carrera"(
+	id_carrera, nombre_carrera, decanato)
+	VALUES ('ca2001', 'Licenciatura en Administracion', 'de1001');
+INSERT INTO public."Asignatura"(
+	id_asignatura, nombre_asignatura, carrera)
+	VALUES ('as200001', 'Fundamentos de Derecho', 'ca2001');
+INSERT INTO public."Asignatura"(
+	id_asignatura, nombre_asignatura, carrera)
+	VALUES ('as100002', 'Estructuras Discretas I', 'ca1001');
+INSERT INTO public."Asignatura"(
+	id_asignatura, nombre_asignatura, carrera)
+	VALUES ('as100001', 'Matematica I', 'ca1001');
+INSERT INTO public."Asignatura"(
+	id_asignatura, nombre_asignatura, carrera)
+	VALUES ('as110001', 'Matematica I', 'ca1002');
+INSERT INTO public."Asignatura"(
+	id_asignatura, nombre_asignatura, carrera)
+	VALUES ('as110002', 'Introd. a la Comput', 'ca1002');
+INSERT INTO public."Estudiante"(
+	id_estudiante, cedula_estudiante, nombre_estudiante, genero_estudiante, carrera, tlf_estudiante, fecha_nacimiento)
+	VALUES ('es1000000000', '27000000', 'Pedro Paez', 'M', 'ca1001', '04242424242', '1999-02-28');
+INSERT INTO public."Estudiante"(
+	id_estudiante, cedula_estudiante, nombre_estudiante, genero_estudiante, carrera, tlf_estudiante, fecha_nacimiento)
+	VALUES ('es1000000001', '27000001', 'Maria Paez', 'F', 'ca1001', '04242424243', '1999-03-28');
+INSERT INTO public."Estudiante"(
+	id_estudiante, cedula_estudiante, nombre_estudiante, genero_estudiante, carrera, tlf_estudiante, fecha_nacimiento)
+	VALUES ('es2000000001', '27000021', 'Josefina Diaz', 'F', 'ca2001', '04242324243', '1999-04-28');
+INSERT INTO public."PeriodoAcademico"(
+	codigo_periodo, fecha_inicio, fecha_final, fecha_limite_retiro)
+	VALUES ('2024-1', '2024-05-20', '2024-11-20', '2024-06-10');
