@@ -17,11 +17,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class ControladorVentanaListadoPorCarrera implements ActionListener{
 	private VentanaListadoPorCarrera ventanaListadoPorCarrera;
-	private final String url = "jdbc:postgresql://localhost/UniversidadCentraldeLara";
-	private final String user = "postgres";
-	private final String password = "1234";
+	private DbCon db;
 	
 	public ControladorVentanaListadoPorCarrera() {
+		db = new DbCon();
 		ventanaListadoPorCarrera = new VentanaListadoPorCarrera();
 		ventanaListadoPorCarrera.setVisible(true);
 		ventanaListadoPorCarrera.agregarListener(this);
@@ -45,7 +44,7 @@ public class ControladorVentanaListadoPorCarrera implements ActionListener{
 			PreparedStatement pS = null;
 			ResultSet result = null;
 			try{
-				con = DriverManager.getConnection(url,user,password);
+				con = DriverManager.getConnection(db.getUrl(),db.getUser(),db.getPassword());
 				//crea el statement sql
 				pS = con.prepareStatement("SELECT nombre_estudiante, nombre_carrera FROM \"Estudiante\" INNER JOIN \"Carrera\" ON \"Estudiante\".carrera = \"Carrera\".id_carrera WHERE nombre_carrera = ?;");
 				pS.setString(1, ventanaListadoPorCarrera.getTxtCarrera().getText());

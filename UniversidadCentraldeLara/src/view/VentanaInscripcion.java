@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
@@ -39,6 +40,7 @@ public class VentanaInscripcion extends JFrame {
 	private JTable tablaInscrpcion;
 	private JComboBox<String> combo;
 	private DefaultTableModel modeloTabla;
+	private JButton btnGuardar, btnBuscarCedula;
 
 	/**
 	 * Launch the application.
@@ -131,7 +133,7 @@ public class VentanaInscripcion extends JFrame {
 		textCarrera.setBackground(new Color(224, 255, 255));
 		panel.add(textCarrera);
 		
-		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar = new JButton("Guardar");
 		btnGuardar.setBounds(413, 559, 210, 65);
 		btnGuardar.setIcon(new ImageIcon(VentanaInscripcion.class.getResource("/iconos/iconGuardar.png")));
 		btnGuardar.setFont(new Font("Segoe UI", Font.BOLD, 30));
@@ -247,7 +249,7 @@ public class VentanaInscripcion extends JFrame {
 		btnMenuPrincipal.setBounds(64, 11, 198, 28);
 		panel.add(btnMenuPrincipal);
 		
-		JButton btnBuscarCedula = new JButton("");
+		btnBuscarCedula = new JButton("");
 		btnBuscarCedula.setIcon(new ImageIcon(VentanaInscripcion.class.getResource("/iconos/iconsLupa30.png")));
 		btnBuscarCedula.setBounds(181, 212, 44, 38);
 		panel.add(btnBuscarCedula);
@@ -293,7 +295,10 @@ public class VentanaInscripcion extends JFrame {
 	public JTextField getTextPeriodoAcad() {
 		return textPeriodoAcad;
 	}
-	
+	public void agregarListener(ActionListener actionListener) {
+		btnGuardar.addActionListener(actionListener); 
+		btnBuscarCedula.addActionListener(actionListener);
+	}
 }
 
 

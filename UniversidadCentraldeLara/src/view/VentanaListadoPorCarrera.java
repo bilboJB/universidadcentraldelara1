@@ -86,6 +86,10 @@ public class VentanaListadoPorCarrera extends JFrame {
 		table = new JTable();
 		columnas = new String[] {"Estudiante", "Carrera"};
 		modelo = new DefaultTableModel(new Object[][] {}, columnas) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 932482014137999698L;
 				boolean[] columnEditables = new boolean[] {
 					false, false
 				};
