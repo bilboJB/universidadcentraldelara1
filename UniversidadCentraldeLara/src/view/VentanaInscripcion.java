@@ -35,10 +35,9 @@ public class VentanaInscripcion extends JFrame {
 	private JTextField textNombre;
 	private JTextField textApellido;
 	private JTextField textCarrera;
-	private JTable table;
 	private JTextField textPeriodoAcad;
 	private JTable tablaInscrpcion;
-	private JComboBox<String> combo;
+	
 	private DefaultTableModel modeloTabla;
 	private JButton btnGuardar, btnBuscarCedula;
 
@@ -144,49 +143,13 @@ public class VentanaInscripcion extends JFrame {
 		scrollPane.setBounds(39, 304, 944, 237);
 		panel.add(scrollPane);
 		
-		table = new JTable();
-		table.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		table.setSelectionForeground(new Color(0, 0, 0));
-		table.setSelectionBackground(new Color(224, 255, 255));
-		table.setRowMargin(0);
-		table.setRowHeight(20);
-		table.setPreferredSize(new Dimension(375, 0));
-		table.setMinimumSize(new Dimension(75, 0));
-		table.setMaximumSize(new Dimension(2147483647, 0));
-		table.setIntercellSpacing(new Dimension(0, 0));
-		table.setFocusTraversalKeysEnabled(false);
-		table.setShowVerticalLines(false);
-		table.setShowGrid(false);
-		table.setShowHorizontalLines(false);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Asignaturas", "Secci\u00F3n"
-			}
-		));
-		table.getColumnModel().getColumn(1).setResizable(false);
-		scrollPane.setColumnHeaderView(table);
-		
-		combo = new JComboBox<String>(new String[] {"1","2"});
 		tablaInscrpcion = new JTable();
 		tablaInscrpcion.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		tablaInscrpcion.setShowVerticalLines(false);
 		tablaInscrpcion.setShowHorizontalLines(false);
 		tablaInscrpcion.setShowGrid(false);
 		modeloTabla = new DefaultTableModel(
-				new Object[][] {
-					{null, null, null},
-					{null, null, null},
-					{null, null, null},
-					{null, null, null},
-					{null, null, null},
-					{null, null, null},
-					{null, null, null},
-					{null, null, null},
-					{null, null, null},
-					{null, null, null},
-				},
+				new Object[][] {},
 				new String[] {
 					"", "Asignaturas", "Secci\u00F3n"
 				}
@@ -202,7 +165,7 @@ public class VentanaInscripcion extends JFrame {
 					return columnTypes[columnIndex];
 				}
 				boolean[] columnEditables = new boolean[] {
-					true, false, true
+					true, false, false
 				};
 				public boolean isCellEditable(int row, int column) {
 					return columnEditables[column];
@@ -210,7 +173,6 @@ public class VentanaInscripcion extends JFrame {
 			};
 		tablaInscrpcion.setModel(modeloTabla);
 		tablaInscrpcion.getColumnModel().getColumn(0).setPreferredWidth(35);
-		tablaInscrpcion.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(combo));
 		scrollPane.setViewportView(tablaInscrpcion);
 		
 		JLabel lblPeriodoAcad = new JLabel("Periodo Académico");
@@ -259,13 +221,13 @@ public class VentanaInscripcion extends JFrame {
 		fondo.setBounds(0, 0, 1014, 661);
 		panel.add(fondo);
 	}
-
-	public JTable getTable() {
-		return table;
+	
+	public JTable getTablaInscrpcion() {
+		return tablaInscrpcion;
 	}
 
-	public void setTable(JTable table) {
-		this.table = table;
+	public void setTablaInscrpcion(JTable tablaInscrpcion) {
+		this.tablaInscrpcion = tablaInscrpcion;
 	}
 
 	public DefaultTableModel getModeloTabla() {

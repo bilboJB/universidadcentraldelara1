@@ -190,3 +190,15 @@ INSERT INTO public."Estudiante"(
 INSERT INTO public."PeriodoAcademico"(
 	codigo_periodo, fecha_inicio, fecha_final, fecha_limite_retiro)
 	VALUES ('2024-1', '2024-05-20', '2024-11-20', '2024-06-10');
+INSERT INTO public."Seccion"(
+	id_seccion, max_estudiantes, periodo, asignatura)
+	VALUES ('se1000012', 32, '2024-1', 'as100002');
+INSERT INTO public."Seccion"(
+	id_seccion, max_estudiantes, periodo, asignatura)
+	VALUES ('se1000011', 32, '2024-1', 'as100002');
+INSERT INTO public."Seccion"(
+	id_seccion, max_estudiantes, periodo, asignatura)
+	VALUES ('se1000002', 32, '2024-1', 'as100001');
+INSERT INTO public."Seccion"(
+	id_seccion, max_estudiantes, periodo, asignatura)
+	VALUES ('se1000001', 32, '2024-1', 'as100001');
