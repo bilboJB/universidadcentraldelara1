@@ -48,7 +48,7 @@ public class ControladorVentanaListadoPorCarrera implements ActionListener{
 				//crea el statement sql
 				pS = con.prepareStatement("SELECT nombre_estudiante, nombre_carrera FROM \"Estudiante\" INNER JOIN \"Carrera\" ON \"Estudiante\".carrera = \"Carrera\".id_carrera WHERE nombre_carrera = ?;");
 				pS.setString(1, ventanaListadoPorCarrera.getTxtCarrera().getText());
-				//se ejecuta el sql y se guarda el resultado
+				//se ejecuta el query y se guarda el resultado
 				result = pS.executeQuery();
 				while(result.next()) {
 					//mientras haya una fila en el resultado se adjunta a la tabla

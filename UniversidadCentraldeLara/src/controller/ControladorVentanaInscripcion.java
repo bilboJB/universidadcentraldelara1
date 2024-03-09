@@ -3,8 +3,15 @@ package controller;
 import view.VentanaInscripcion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.net.DatagramSocketImplFactory;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.*;
 
@@ -14,8 +21,10 @@ public class ControladorVentanaInscripcion implements ActionListener{
 	private Inscripcion inscripcion;
 	private PeriodoAcademico periodo;
 	private Estudiante estudiante;
-	private String codigoCarrera;
+	private String codigoCarrera, codigoEstudiante;
 	private Carrera carrera;
+	private ArrayList<Seccion> secciones;
+	private ArrayList<String> asignaturas;
 	
 	public ControladorVentanaInscripcion() {
 		db = new DbCon();
@@ -23,12 +32,32 @@ public class ControladorVentanaInscripcion implements ActionListener{
 		ventanaInscripcion.setVisible(true);
 		ventanaInscripcion.agregarListener(this);
 		obtenerPeriodo();
+		secciones = new ArrayList<Seccion>();
+		asignaturas = new ArrayList<String>();
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equalsIgnoreCase("Guardar")) {
 			//para el boton guardar
-			
+			int rows = ventanaInscripcion.getTablaInscrpcion().getRowCount();
+			for (int i = 0; i < rows; i++) {
+				if ((Boolean)(ventanaInscripcion.getModeloTabla().getValueAt(i, 0)) == true) {
+					asignaturas.add(ventanaInscripcion.getModeloTabla().getValueAt(i, 1).toString());
+					secciones.add(new Seccion(null, new Estudiante[] {estudiante}, ventanaInscripcion.getModeloTabla().getValueAt(i, 2).toString(), periodo));
+				}
+			}
+			//revisando si hay duplicados entre las asignaturas
+			if (distintasAsignaturas(asignaturas)) {
+				inscripcion = new Inscripcion(carrera, estudiante, periodo, secciones.toArray(new Seccion[0]));
+				inscribirEstudiante();
+				JOptionPane.showMessageDialog(ventanaInscripcion, "Inscripción realizada con exito!");
+				
+			}
+			else {
+				JOptionPane.showMessageDialog(ventanaInscripcion, "Por favor escoja una sección por asignatura");
+			}
+			asignaturas.clear();
+			secciones.clear();
 		}
 		if(e.getActionCommand().equalsIgnoreCase("")) {
 			//para el boton buscar cedula
@@ -91,13 +120,14 @@ public class ControladorVentanaInscripcion implements ActionListener{
 		try{
 			con = DriverManager.getConnection(db.getUrl(),db.getUser(),db.getPassword());
 			//crea el statement sql
-			pS = con.prepareStatement("SELECT nombre_estudiante, cedula_estudiante, tlf_estudiante, fecha_nacimiento, genero_estudiante, carrera FROM public.\"Estudiante\" WHERE cedula_estudiante = ?;");	
+			pS = con.prepareStatement("SELECT nombre_estudiante, cedula_estudiante, tlf_estudiante, fecha_nacimiento, genero_estudiante, carrera, id_estudiante FROM public.\"Estudiante\" WHERE cedula_estudiante = ?;");	
 			pS.setString(1, ventanaInscripcion.getTextCedula().getText());
 			//se ejecuta el sql y se guarda el resultado
 			result = pS.executeQuery();
 			while(result.next()) {
 				estudiante = new Estudiante(result.getString(1),result.getString(2),result.getString(3),result.getDate(4).toLocalDate(),result.getString(5).charAt(0),null);
 				codigoCarrera = result.getString(6);
+				codigoEstudiante = result.getString(7);
 			}
 			String[] nombreApellido = estudiante.getNombreCompleto().split("\\s+");
 			ventanaInscripcion.getTextNombre().setText(nombreApellido[0]);
@@ -148,10 +178,11 @@ public class ControladorVentanaInscripcion implements ActionListener{
 			//crea el statement sql
 			pS = con.prepareStatement("SELECT nombre_asignatura, id_seccion FROM \"Seccion\" INNER JOIN \"Asignatura\" ON \"Seccion\".asignatura = \"Asignatura\".id_asignatura WHERE carrera = ?;");	
 			pS.setString(1, codigoCarrera);
-			//se ejecuta el sql y se guarda el resultado
+			//se ejecuta el query y se guarda el resultado
 			result = pS.executeQuery();
 			while(result.next()) {
-				ventanaInscripcion.getModeloTabla().addRow(new Object[] {null, result.getString(1), result.getString(2).charAt(8)});
+				//se agregan los resultados a la tabla
+				ventanaInscripcion.getModeloTabla().addRow(new Object[] {false, result.getString(1), result.getString(2)});
 			}
 		}
 		catch (SQLException ex) {
@@ -164,5 +195,58 @@ public class ControladorVentanaInscripcion implements ActionListener{
 		    try { if (con != null) con.close(); } catch (Exception ex) {};
 		}
 		ventanaInscripcion.getTablaInscrpcion().setModel(ventanaInscripcion.getModeloTabla());
+	}
+	private boolean distintasAsignaturas(ArrayList<String> lista) {
+		return lista.stream().distinct().count() == lista.size();
+	}
+	private void inscribirEstudiante() {
+		Connection con = null;
+		PreparedStatement pS = null;
+		try {
+			con = DriverManager.getConnection(db.getUrl(),db.getUser(),db.getPassword());
+			//crea el statement sql
+			pS = con.prepareStatement("INSERT INTO public.\"EstudiantePorSeccion\" (estudiante, seccion) VALUES (?, ?);");
+			for (Seccion seccion : inscripcion.getSecciones()) {
+				//inserta en estudiantes por seccion
+				pS.setString(1, codigoEstudiante);
+				pS.setString(2, seccion.getCodigoSeccion());
+				pS.executeUpdate();
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		finally {
+			//cierra todo
+			try { if (pS != null) pS.close(); } catch (Exception ex) {};
+		    try { if (con != null) con.close(); } catch (Exception ex) {};
+		}
+	}
+	private void limpiar() {
+		ventanaInscripcion.setModeloTabla(new DefaultTableModel(
+				new Object[][] {},
+				new String[] {
+					"", "Asignaturas", "Secci\u00F3n"
+				}
+			) {
+				/**
+				 * 
+				 */
+				Class[] columnTypes = new Class[] {
+					Boolean.class, Object.class, Object.class
+				};
+				public Class getColumnClass(int columnIndex) {
+					return columnTypes[columnIndex];
+				}
+				boolean[] columnEditables = new boolean[] {
+					true, false, false
+				};
+				public boolean isCellEditable(int row, int column) {
+					return columnEditables[column];
+				}
+			});
+		ventanaInscripcion.getTextNombre().setText("");
+		ventanaInscripcion.getTextApellido().setText("");
+		ventanaInscripcion.getTextCarrera().setText("");
+		ventanaInscripcion.getTextCedula().setText("");
 	}
 }

@@ -15,15 +15,21 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
+
+import java.awt.Checkbox;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import javax.swing.JScrollPane;
 import java.awt.Dimension;
 
@@ -261,6 +267,7 @@ public class VentanaInscripcion extends JFrame {
 		btnGuardar.addActionListener(actionListener); 
 		btnBuscarCedula.addActionListener(actionListener);
 	}
+
 }
 
 

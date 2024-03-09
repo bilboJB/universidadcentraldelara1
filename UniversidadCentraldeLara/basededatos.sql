@@ -202,3 +202,9 @@ INSERT INTO public."Seccion"(
 INSERT INTO public."Seccion"(
 	id_seccion, max_estudiantes, periodo, asignatura)
 	VALUES ('se1000001', 32, '2024-1', 'as100001');
+ALTER TABLE IF EXISTS public."EstudiantePorSeccion" DROP COLUMN IF EXISTS id_porseccion;
+
+ALTER TABLE IF EXISTS public."EstudiantePorSeccion"
+    ADD COLUMN id_porseccion serial NOT NULL;
+ALTER TABLE IF EXISTS public."EstudiantePorSeccion"
+    ADD PRIMARY KEY (id_porseccion);
