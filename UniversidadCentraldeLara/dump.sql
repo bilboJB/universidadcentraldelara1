@@ -20,7 +20,7 @@ SET row_security = off;
 -- Name: UniversidadCentraldeLara; Type: DATABASE; Schema: -; Owner: postgres
 --
 
-CREATE DATABASE "UniversidadCentraldeLara" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'Spanish_Venezuela.1252';
+CREATE DATABASE "UniversidadCentraldeLara" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc;
 
 
 ALTER DATABASE "UniversidadCentraldeLara" OWNER TO postgres;
