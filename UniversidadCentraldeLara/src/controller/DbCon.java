@@ -1,7 +1,5 @@
 package controller;
 
-import java.sql.*;
-
 public class DbCon {
 	private final String url;
 	private final String user;

@@ -3,14 +3,8 @@ package controller;
 import view.VentanaInscripcion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.net.DatagramSocketImplFactory;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.*;
@@ -51,7 +45,7 @@ public class ControladorVentanaInscripcion implements ActionListener{
 				inscripcion = new Inscripcion(carrera, estudiante, periodo, secciones.toArray(new Seccion[0]));
 				inscribirEstudiante();
 				JOptionPane.showMessageDialog(ventanaInscripcion, "Inscripción realizada con exito!");
-				
+				limpiar();
 			}
 			else {
 				JOptionPane.showMessageDialog(ventanaInscripcion, "Por favor escoja una sección por asignatura");
