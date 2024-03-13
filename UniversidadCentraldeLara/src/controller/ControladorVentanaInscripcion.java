@@ -53,6 +53,7 @@ public class ControladorVentanaInscripcion implements ActionListener{
 			asignaturas.clear();
 			secciones.clear();
 		}
+		
 		if(e.getActionCommand().equalsIgnoreCase("")) {
 			//para el boton buscar cedula
 			obtenerDatosEstudiante();
@@ -118,6 +119,15 @@ public class ControladorVentanaInscripcion implements ActionListener{
 			pS.setString(1, ventanaInscripcion.getTextCedula().getText());
 			//se ejecuta el sql y se guarda el resultado
 			result = pS.executeQuery();
+			if(!result.isBeforeFirst()){
+				//si no encuentra ningun estudiante
+				estudiante = null;
+				codigoCarrera = "";
+				codigoEstudiante = "";
+				JOptionPane.showMessageDialog(ventanaInscripcion, "Estudiante no encontrado");
+				limpiar();
+				return;
+			}
 			while(result.next()) {
 				estudiante = new Estudiante(result.getString(1),result.getString(2),result.getString(3),result.getDate(4).toLocalDate(),result.getString(5).charAt(0),null);
 				codigoCarrera = result.getString(6);
@@ -148,6 +158,9 @@ public class ControladorVentanaInscripcion implements ActionListener{
 			pS.setString(1, codigoCarrera);
 			//se ejecuta el sql y se guarda el resultado
 			result = pS.executeQuery();
+			if(!result.isBeforeFirst()) {
+				return;
+			}
 			while(result.next()) {
 				carrera = new Carrera(null,result.getString(1));
 			}
@@ -174,6 +187,9 @@ public class ControladorVentanaInscripcion implements ActionListener{
 			pS.setString(1, codigoCarrera);
 			//se ejecuta el query y se guarda el resultado
 			result = pS.executeQuery();
+			if(!result.isBeforeFirst()) {
+				return;
+			}
 			while(result.next()) {
 				//se agregan los resultados a la tabla
 				ventanaInscripcion.getModeloTabla().addRow(new Object[] {false, result.getString(1), result.getString(2)});
@@ -242,5 +258,6 @@ public class ControladorVentanaInscripcion implements ActionListener{
 		ventanaInscripcion.getTextApellido().setText("");
 		ventanaInscripcion.getTextCarrera().setText("");
 		ventanaInscripcion.getTextCedula().setText("");
+		ventanaInscripcion.getTablaInscrpcion().setModel(ventanaInscripcion.getModeloTabla());
 	}
 }
