@@ -5,6 +5,7 @@ Isivet Montero 28.020.215
 Nairym González 28.206.840
 Alexis Acuña 26.305.133
 */
+
 package view;
 
 import java.awt.EventQueue;
@@ -22,11 +23,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class RetiroAsignatura extends JFrame {
+public class VentanaListadoSemestre extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textAsignatura;
+	private JTextField textSemestre;
 	private JTable table;
 
 	/**
@@ -36,7 +37,7 @@ public class RetiroAsignatura extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RetiroAsignatura frame = new RetiroAsignatura();
+					VentanaListadoSemestre frame = new VentanaListadoSemestre();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +49,7 @@ public class RetiroAsignatura extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public RetiroAsignatura() {
+	public VentanaListadoSemestre() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1030, 700);
 		contentPane = new JPanel();
@@ -62,38 +63,38 @@ public class RetiroAsignatura extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel retiroAsignatura = new JLabel("Listado de Retiro de Asignatura");
-		retiroAsignatura.setIcon(new ImageIcon(RetiroAsignatura.class.getResource("/iconos/listado de estudiante por semestre.png")));
-		retiroAsignatura.setFont(new Font("Segoe UI", Font.BOLD, 50));
-		retiroAsignatura.setBounds(110, 62, 838, 81);
-		panel.add(retiroAsignatura);
+		JLabel estudianteXSemestre = new JLabel("Listado de Estudiantes por Semestres");
+		estudianteXSemestre.setIcon(new ImageIcon(VentanaListadoSemestre.class.getResource("/iconos/listado de estudiante por semestre.png")));
+		estudianteXSemestre.setFont(new Font("Segoe UI", Font.BOLD, 50));
+		estudianteXSemestre.setBounds(24, 56, 969, 81);
+		panel.add(estudianteXSemestre);
 		
-		JLabel asignatura = new JLabel("Asignatura:");
-		asignatura.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		asignatura.setBounds(295, 169, 93, 32);
-		panel.add(asignatura);
+		JLabel semestre = new JLabel("Semestre:");
+		semestre.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		semestre.setBounds(328, 148, 81, 32);
+		panel.add(semestre);
 		
-		textAsignatura = new JTextField();
-		textAsignatura.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		textAsignatura.setColumns(10);
-		textAsignatura.setBackground(new Color(224, 255, 255));
-		textAsignatura.setBounds(385, 169, 238, 32);
-		panel.add(textAsignatura);
+		textSemestre = new JTextField();
+		textSemestre.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		textSemestre.setColumns(10);
+		textSemestre.setBackground(new Color(224, 255, 255));
+		textSemestre.setBounds(403, 148, 158, 32);
+		panel.add(textSemestre);
 		
-		JButton btnBuscarAsignatura = new JButton("");
-		btnBuscarAsignatura.setIcon(new ImageIcon(RetiroAsignatura.class.getResource("/iconos/iconsLupa30.png")));
-		btnBuscarAsignatura.setBounds(622, 169, 36, 32);
-		panel.add(btnBuscarAsignatura);
+		JButton btnBuscarSemestre = new JButton("");
+		btnBuscarSemestre.setIcon(new ImageIcon(VentanaListadoSemestre.class.getResource("/iconos/iconsLupa30.png")));
+		btnBuscarSemestre.setBounds(564, 148, 36, 32);
+		panel.add(btnBuscarSemestre);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(78, 236, 882, 302);
+		scrollPane.setBounds(66, 214, 918, 283);
 		panel.add(scrollPane);
 		
 		table = new JTable();
+		table.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		table.setShowVerticalLines(false);
 		table.setShowHorizontalLines(false);
 		table.setShowGrid(false);
-		table.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -112,48 +113,46 @@ public class RetiroAsignatura extends JFrame {
 				{null, null},
 				{null, null},
 				{null, null},
-				{null, null},
 			},
 			new String[] {
-				"Estudiante", "Asignatura"
+				"Estudiantes", "Semestre"
 			}
 		));
 		scrollPane.setViewportView(table);
 		
 		JButton btnGenerarListado = new JButton("Generar Listado");
-		btnGenerarListado.setIcon(new ImageIcon(RetiroAsignatura.class.getResource("/iconos/iconsLista50.png")));
+		btnGenerarListado.setIcon(new ImageIcon(VentanaListadoSemestre.class.getResource("/iconos/iconsLista50.png")));
 		btnGenerarListado.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		btnGenerarListado.setBackground(Color.BLACK);
-		btnGenerarListado.setBounds(342, 560, 355, 65);
+		btnGenerarListado.setBounds(382, 537, 355, 65);
 		panel.add(btnGenerarListado);
 		
 		JButton btnVolver = new JButton("");
-		btnVolver.setIcon(new ImageIcon(RetiroAsignatura.class.getResource("/iconos/iconsVolver30.png")));
-		btnVolver.setBounds(10, 11, 44, 28);
+		btnVolver.setIcon(new ImageIcon(VentanaListadoSemestre.class.getResource("/iconos/iconsVolver30.png")));
+		btnVolver.setBounds(11, 11, 44, 28);
 		panel.add(btnVolver);
 		
 		JButton btnMenuPrincipal = new JButton("Menu Principal");
 		btnMenuPrincipal.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		btnMenuPrincipal.setBackground(Color.BLACK);
-		btnMenuPrincipal.setBounds(67, 11, 198, 28);
+		btnMenuPrincipal.setBounds(68, 11, 198, 28);
 		panel.add(btnMenuPrincipal);
 		
 		JButton btnMinimizar = new JButton("");
-		btnMinimizar.setIcon(new ImageIcon(RetiroAsignatura.class.getResource("/iconos/btn-minimizar.png")));
+		btnMinimizar.setIcon(new ImageIcon(VentanaListadoSemestre.class.getResource("/iconos/btn-minimizar.png")));
 		btnMinimizar.setBackground(Color.BLACK);
-		btnMinimizar.setBounds(902, 11, 44, 29);
+		btnMinimizar.setBounds(903, 11, 44, 29);
 		panel.add(btnMinimizar);
 		
 		JButton btnSalir = new JButton("");
-		btnSalir.setIcon(new ImageIcon(RetiroAsignatura.class.getResource("/iconos/btn-cerrar.png")));
+		btnSalir.setIcon(new ImageIcon(VentanaListadoSemestre.class.getResource("/iconos/btn-cerrar.png")));
 		btnSalir.setBackground(Color.BLACK);
-		btnSalir.setBounds(948, 11, 44, 29);
+		btnSalir.setBounds(949, 11, 44, 29);
 		panel.add(btnSalir);
 		
 		JLabel fondo = new JLabel("");
-		fondo.setIcon(new ImageIcon(RetiroAsignatura.class.getResource("/iconos/fondoMenu.jpg")));
+		fondo.setIcon(new ImageIcon(VentanaListadoSemestre.class.getResource("/iconos/fondoMenu.jpg")));
 		fondo.setBounds(0, 0, 1014, 661);
 		panel.add(fondo);
 	}
-
 }

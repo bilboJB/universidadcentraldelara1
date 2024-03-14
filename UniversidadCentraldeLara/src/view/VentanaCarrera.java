@@ -5,6 +5,7 @@ Isivet Montero 28.020.215
 Nairym González 28.206.840
 Alexis Acuña 26.305.133
 */
+
 package view;
 
 import java.awt.EventQueue;
@@ -19,7 +20,7 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
 
-public class Carrera extends JFrame {
+public class VentanaCarrera extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -34,7 +35,7 @@ public class Carrera extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Carrera frame = new Carrera();
+					VentanaCarrera frame = new VentanaCarrera();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +47,7 @@ public class Carrera extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Carrera() {
+	public VentanaCarrera() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1030, 700);
 		contentPane = new JPanel();
@@ -61,7 +62,7 @@ public class Carrera extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel carrera = new JLabel("Carrera");
-		carrera.setIcon(new ImageIcon(Carrera.class.getResource("/iconos/carrera-profesional.png")));
+		carrera.setIcon(new ImageIcon(VentanaCarrera.class.getResource("/iconos/carrera-profesional.png")));
 		carrera.setFont(new Font("Segoe UI", Font.BOLD, 60));
 		carrera.setBounds(31, 61, 424, 89);
 		panel.add(carrera);
@@ -105,65 +106,51 @@ public class Carrera extends JFrame {
 		txtAsignatura.setBounds(41, 347, 338, 38);
 		panel.add(txtAsignatura);
 		
-		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.setIcon(new ImageIcon(Carrera.class.getResource("/iconos/iconGuardar.png")));
-		btnGuardar.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		btnGuardar.setBackground(Color.BLACK);
-		btnGuardar.setBounds(17, 407, 210, 65);
-		panel.add(btnGuardar);
-		
-		JButton btnLimpiar = new JButton("Limpiar");
-		btnLimpiar.setIcon(new ImageIcon(Carrera.class.getResource("/iconos/iconsLimpiar50.png")));
-		btnLimpiar.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		btnLimpiar.setBackground(Color.BLACK);
-		btnLimpiar.setBounds(255, 407, 200, 65);
-		panel.add(btnLimpiar);
-		
-		JButton btnEliminar = new JButton("Eliminar");
-		btnEliminar.setIcon(new ImageIcon(Carrera.class.getResource("/iconos/iconsEliminar50.png")));
-		btnEliminar.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		btnEliminar.setBackground(Color.BLACK);
-		btnEliminar.setBounds(255, 492, 210, 65);
-		panel.add(btnEliminar);
-		
 		JLabel lblImagen = new JLabel("");
-		lblImagen.setIcon(new ImageIcon(Carrera.class.getResource("/iconos/carrera-profesional (1).png")));
+		lblImagen.setIcon(new ImageIcon(VentanaCarrera.class.getResource("/iconos/carrera-profesional (1).png")));
 		lblImagen.setBounds(478, 61, 515, 575);
 		panel.add(lblImagen);
 		
 		JButton btnVolver = new JButton("");
-		btnVolver.setIcon(new ImageIcon(Carrera.class.getResource("/iconos/iconsVolver30.png")));
+		btnVolver.setIcon(new ImageIcon(VentanaCarrera.class.getResource("/iconos/iconsVolver30.png")));
 		btnVolver.setBounds(11, 11, 44, 28);
 		panel.add(btnVolver);
 		
 		JButton btnMinimizar = new JButton("");
-		btnMinimizar.setIcon(new ImageIcon(Carrera.class.getResource("/iconos/btn-minimizar.png")));
+		btnMinimizar.setIcon(new ImageIcon(VentanaCarrera.class.getResource("/iconos/btn-minimizar.png")));
 		btnMinimizar.setBackground(Color.BLACK);
 		btnMinimizar.setBounds(903, 11, 44, 29);
 		panel.add(btnMinimizar);
 		
 		JButton btnSalir = new JButton("");
-		btnSalir.setIcon(new ImageIcon(Carrera.class.getResource("/iconos/btn-cerrar.png")));
+		btnSalir.setIcon(new ImageIcon(VentanaCarrera.class.getResource("/iconos/btn-cerrar.png")));
 		btnSalir.setBackground(Color.BLACK);
 		btnSalir.setBounds(949, 11, 44, 29);
 		panel.add(btnSalir);
 		
 		JButton btnBuscarCarrera = new JButton("");
-		btnBuscarCarrera.setIcon(new ImageIcon(Carrera.class.getResource("/iconos/iconsLupa30.png")));
+		btnBuscarCarrera.setIcon(new ImageIcon(VentanaCarrera.class.getResource("/iconos/iconsLupa30.png")));
 		btnBuscarCarrera.setBounds(269, 189, 44, 38);
 		panel.add(btnBuscarCarrera);
 		
+		JButton btnGuardar = new JButton("");
+		btnGuardar.setIcon(new ImageIcon(VentanaCarrera.class.getResource("/iconos/iconGuardar.png")));
+		btnGuardar.setFont(new Font("Segoe UI", Font.BOLD, 30));
+		btnGuardar.setBackground(Color.BLACK);
+		btnGuardar.setBounds(89, 419, 105, 65);
+		panel.add(btnGuardar);
+		
 		JButton btnBuscarAsignatura = new JButton("");
-		btnBuscarAsignatura.setIcon(new ImageIcon(Carrera.class.getResource("/iconos/iconsLupa30.png")));
+		btnBuscarAsignatura.setIcon(new ImageIcon(VentanaCarrera.class.getResource("/iconos/iconsLupa30.png")));
 		btnBuscarAsignatura.setBounds(381, 347, 44, 38);
 		panel.add(btnBuscarAsignatura);
 		
-		JButton btnVerListadoCarreras = new JButton("Ver Listado Carreras");
-		btnVerListadoCarreras.setIcon(new ImageIcon(Carrera.class.getResource("/iconos/iconsLista50.png")));
-		btnVerListadoCarreras.setFont(new Font("Segoe UI", Font.BOLD, 24));
-		btnVerListadoCarreras.setBackground(Color.BLACK);
-		btnVerListadoCarreras.setBounds(54, 579, 369, 65);
-		panel.add(btnVerListadoCarreras);
+		JButton btnModificar = new JButton("");
+		btnModificar.setIcon(new ImageIcon(VentanaCarrera.class.getResource("/iconos/iconsEditar50.png")));
+		btnModificar.setFont(new Font("Segoe UI", Font.BOLD, 30));
+		btnModificar.setBackground(Color.BLACK);
+		btnModificar.setBounds(241, 419, 105, 65);
+		panel.add(btnModificar);
 		
 		JButton btnMenuPrincipal = new JButton("Menu Principal");
 		btnMenuPrincipal.setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -171,15 +158,29 @@ public class Carrera extends JFrame {
 		btnMenuPrincipal.setBounds(65, 11, 198, 28);
 		panel.add(btnMenuPrincipal);
 		
-		JButton btnModificar = new JButton("Modificar");
-		btnModificar.setIcon(new ImageIcon(Carrera.class.getResource("/iconos/iconsEditar50.png")));
-		btnModificar.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		btnModificar.setBackground(Color.BLACK);
-		btnModificar.setBounds(11, 492, 227, 65);
-		panel.add(btnModificar);
+		JButton btnLimpiar = new JButton("");
+		btnLimpiar.setIcon(new ImageIcon(VentanaCarrera.class.getResource("/iconos/iconsLimpiar50.png")));
+		btnLimpiar.setFont(new Font("Segoe UI", Font.BOLD, 30));
+		btnLimpiar.setBackground(Color.BLACK);
+		btnLimpiar.setBounds(89, 495, 105, 65);
+		panel.add(btnLimpiar);
+		
+		JButton btnVerListadoCarreras = new JButton("Ver Listado Carreras");
+		btnVerListadoCarreras.setIcon(new ImageIcon(VentanaCarrera.class.getResource("/iconos/iconsLista50.png")));
+		btnVerListadoCarreras.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		btnVerListadoCarreras.setBackground(Color.BLACK);
+		btnVerListadoCarreras.setBounds(41, 571, 369, 65);
+		panel.add(btnVerListadoCarreras);
+		
+		JButton btnEliminar = new JButton("");
+		btnEliminar.setIcon(new ImageIcon(VentanaCarrera.class.getResource("/iconos/iconsEliminar50.png")));
+		btnEliminar.setFont(new Font("Segoe UI", Font.BOLD, 30));
+		btnEliminar.setBackground(Color.BLACK);
+		btnEliminar.setBounds(241, 495, 105, 65);
+		panel.add(btnEliminar);
 		
 		JLabel fondo = new JLabel("");
-		fondo.setIcon(new ImageIcon(Carrera.class.getResource("/iconos/fondoMenu.jpg")));
+		fondo.setIcon(new ImageIcon(VentanaCarrera.class.getResource("/iconos/fondoMenu.jpg")));
 		fondo.setBounds(0, 0, 1014, 661);
 		panel.add(fondo);
 	}

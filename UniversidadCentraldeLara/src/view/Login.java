@@ -5,6 +5,7 @@ Isivet Montero 28.020.215
 Nairym González 28.206.840
 Alexis Acuña 26.305.133
 */
+
 package view;
 
 import java.awt.EventQueue;
