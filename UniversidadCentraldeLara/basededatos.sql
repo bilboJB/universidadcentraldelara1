@@ -208,3 +208,35 @@ ALTER TABLE IF EXISTS public."EstudiantePorSeccion"
     ADD COLUMN id_porseccion serial NOT NULL;
 ALTER TABLE IF EXISTS public."EstudiantePorSeccion"
     ADD PRIMARY KEY (id_porseccion);
+
+CREATE TABLE public."Profesor"
+(
+    id_profesor serial NOT NULL,
+    cedula_profesor character varying(8) NOT NULL,
+    nombre_profesor character varying(60) NOT NULL,
+    tlf_profesor character varying(11),
+    genero_profesor "char",
+    PRIMARY KEY (id_profesor)
+);
+
+ALTER TABLE IF EXISTS public."Profesor"
+    OWNER to postgres;
+ALTER TABLE IF EXISTS public."Seccion"
+    ADD COLUMN profesor serial;
+ADD CONSTRAINT profesor FOREIGN KEY (profesor)
+	REFERENCES public."Profesor" (id_profesor)
+	ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+INSERT INTO public."Profesor"(
+	cedula_profesor, nombre_profesor, tlf_profesor, genero_profesor)
+	VALUES ('17000000', 'Carlos Santana', '04141414141', 'M');
+INSERT INTO public."Profesor"(
+	cedula_profesor, nombre_profesor, tlf_profesor, genero_profesor)
+	VALUES ('17000001', 'Gonzalo Galindez', '04141414142', 'M');
+INSERT INTO public."Profesor"(
+	cedula_profesor, nombre_profesor, tlf_profesor, genero_profesor)
+	VALUES ('17000002', 'Fabiola Fabregas', '04161414142', 'F');
+INSERT INTO public."Profesor"(
+	cedula_profesor, nombre_profesor, tlf_profesor, genero_profesor)
+	VALUES ('17000102', 'Julieta Fabregas', '04161414143', 'F');

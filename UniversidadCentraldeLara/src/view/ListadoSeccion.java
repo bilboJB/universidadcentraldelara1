@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.Color;
@@ -28,6 +30,8 @@ public class ListadoSeccion extends JFrame {
 	private JPanel contentPane;
 	private JTextField textSeccion;
 	private JTable table;
+	private DefaultTableModel modelo;
+	private JButton btnBuscarSeccion, btnGenerarListado;
 
 	/**
 	 * Launch the application.
@@ -80,12 +84,12 @@ public class ListadoSeccion extends JFrame {
 		textSeccion.setBounds(407, 165, 258, 32);
 		panel.add(textSeccion);
 		
-		JButton btnBuscarSeccion = new JButton("");
+		btnBuscarSeccion = new JButton("");
 		btnBuscarSeccion.setIcon(new ImageIcon(ListadoSeccion.class.getResource("/iconos/iconsLupa30.png")));
 		btnBuscarSeccion.setBounds(675, 165, 36, 32);
 		panel.add(btnBuscarSeccion);
 		
-		JButton btnGenerarListado = new JButton("Generar Listado");
+		btnGenerarListado = new JButton("Generar Listado");
 		btnGenerarListado.setIcon(new ImageIcon(ListadoSeccion.class.getResource("/iconos/iconsLista50.png")));
 		btnGenerarListado.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		btnGenerarListado.setBackground(Color.BLACK);
@@ -100,30 +104,21 @@ public class ListadoSeccion extends JFrame {
 		table.setShowVerticalLines(false);
 		table.setShowHorizontalLines(false);
 		table.setShowGrid(false);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"Decanato", "Carrera", "Asignatura", "Docente", "Seccion"
-			}
-		));
+		modelo = new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"Decanato", "Carrera", "Asignatura", "Docente", "Seccion"
+				}
+			) {
+				boolean[] columnEditables = new boolean[] {
+					false, false, false, false, false
+				};
+				public boolean isCellEditable(int row, int column) {
+					return columnEditables[column];
+				}
+			};
+		table.setModel(modelo);
 		scrollPane.setViewportView(table);
 		
 		JButton btnVolver = new JButton("");
@@ -153,5 +148,26 @@ public class ListadoSeccion extends JFrame {
 		fondo.setIcon(new ImageIcon(ListadoSeccion.class.getResource("/iconos/fondoMenu.jpg")));
 		fondo.setBounds(0, 0, 1014, 661);
 		panel.add(fondo);
+	}
+
+	public DefaultTableModel getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(DefaultTableModel modelo) {
+		this.modelo = modelo;
+	}
+
+	public JTextField getTextSeccion() {
+		return textSeccion;
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+	
+	public void agregarListener(ActionListener actionListener) {
+		btnBuscarSeccion.addActionListener(actionListener);
+		btnGenerarListado.addActionListener(actionListener);
 	}
 }
