@@ -18,8 +18,7 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
-//import com.toedter.calendar.JCalendar;
-//import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JDateChooser;
 
 public class VentanaPeriodoAcademico extends JFrame {
 
@@ -155,17 +154,17 @@ public class VentanaPeriodoAcademico extends JFrame {
 		lblImagen.setBounds(468, 151, 536, 483);
 		panel.add(lblImagen);
 		
-		//JDateChooser dateChooserInicio = new JDateChooser();
-		//dateChooserInicio.setBounds(71, 306, 171, 28);
-		//panel.add(dateChooserInicio);
+		JDateChooser dateChooserInicio = new JDateChooser();
+		dateChooserInicio.setBounds(71, 306, 171, 28);
+		panel.add(dateChooserInicio);
 		
-		//JDateChooser dateChooserFinal = new JDateChooser();
-		//dateChooserFinal.setBounds(71, 380, 171, 28);
-		//panel.add(dateChooserFinal);
+		JDateChooser dateChooserFinal = new JDateChooser();
+		dateChooserFinal.setBounds(71, 380, 171, 28);
+		panel.add(dateChooserFinal);
 		
-		//JDateChooser dateChooserRetiro = new JDateChooser();
-		//dateChooserRetiro.setBounds(71, 454, 171, 28);
-		//panel.add(dateChooserRetiro);
+		JDateChooser dateChooserRetiro = new JDateChooser();
+		dateChooserRetiro.setBounds(71, 454, 171, 28);
+		panel.add(dateChooserRetiro);
 		
 		JLabel fondo = new JLabel("");
 		fondo.setIcon(new ImageIcon(VentanaPeriodoAcademico.class.getResource("/iconos/fondoMenu.jpg")));

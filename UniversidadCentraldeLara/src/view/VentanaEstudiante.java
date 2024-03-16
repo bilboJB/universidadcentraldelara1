@@ -20,6 +20,7 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import com.toedter.calendar.JDateChooser;
 
 public class VentanaEstudiante extends JFrame {
 
@@ -220,9 +221,9 @@ public class VentanaEstudiante extends JFrame {
 		btnLimpiar.setBounds(397, 424, 100, 53);
 		panel.add(btnLimpiar);
 		
-		//JDateChooser dateChooserFechaNac = new JDateChooser();
-		//dateChooserFechaNac.setBounds(47, 466, 203, 28);
-		//panel.add(dateChooserFechaNac);
+		JDateChooser dateChooserFechaNac = new JDateChooser();
+		dateChooserFechaNac.setBounds(47, 466, 203, 28);
+		panel.add(dateChooserFechaNac);
 		
 		JLabel fondo = new JLabel("");
 		fondo.setIcon(new ImageIcon(VentanaEstudiante.class.getResource("/iconos/fondoMenu.jpg")));

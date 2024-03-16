@@ -18,7 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
-//import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JDateChooser;
 
 public class VentanaSeccion extends JFrame {
 
@@ -191,9 +191,9 @@ public class VentanaSeccion extends JFrame {
 		btnVerListadoSeccion.setBounds(24, 596, 389, 54);
 		panel.add(btnVerListadoSeccion);
 		
-		//JDateChooser dateChooserPeriodoAcad = new JDateChooser();
-		//dateChooserPeriodoAcad.setBounds(49, 418, 171, 28);
-		//panel.add(dateChooserPeriodoAcad);
+		JDateChooser dateChooserPeriodoAcad = new JDateChooser();
+		dateChooserPeriodoAcad.setBounds(49, 418, 171, 28);
+		panel.add(dateChooserPeriodoAcad);
 		
 		JLabel fondo = new JLabel("");
 		fondo.setIcon(new ImageIcon(VentanaSeccion.class.getResource("/iconos/fondoMenu.jpg")));
