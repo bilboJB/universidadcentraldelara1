@@ -26,7 +26,6 @@ public class VentanaDecanato extends JFrame {
 	private JTextField textNombre;
 	private JTextField textDireccion;
 	private JTextField textTelefono;
-	private JTextField textCarrera;
 
 	/**
 	 * Launch the application.
@@ -96,17 +95,9 @@ public class VentanaDecanato extends JFrame {
 		JButton btnModificar = new JButton("");
 		btnModificar.setIcon(new ImageIcon(VentanaDecanato.class.getResource("/iconos/iconsEditar50.png")));
 		btnModificar.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		btnModificar.setBackground(Color.BLACK);
+		btnModificar.setBackground(Color.LIGHT_GRAY);
 		btnModificar.setBounds(139, 496, 94, 59);
 		panel.add(btnModificar);
-		
-		textCarrera = new JTextField();
-		textCarrera.setText("ingrese el código de la carrera");
-		textCarrera.setFont(new Font("Segoe UI", Font.BOLD, 20));
-		textCarrera.setColumns(10);
-		textCarrera.setBackground(new Color(224, 255, 255));
-		textCarrera.setBounds(32, 411, 304, 38);
-		panel.add(textCarrera);
 		
 		JButton btnSalir = new JButton("");
 		btnSalir.setIcon(new ImageIcon(VentanaDecanato.class.getResource("/iconos/btn-cerrar.png")));
@@ -115,17 +106,12 @@ public class VentanaDecanato extends JFrame {
 		panel.add(btnSalir);
 		
 		textDireccion = new JTextField();
-		textDireccion.setText("ingrese la direccion");
+		textDireccion.setToolTipText("ingrese la direccion");
 		textDireccion.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		textDireccion.setColumns(10);
 		textDireccion.setBackground(new Color(224, 255, 255));
 		textDireccion.setBounds(32, 263, 299, 38);
 		panel.add(textDireccion);
-		
-		JButton btnBuscarCarrera = new JButton("");
-		btnBuscarCarrera.setIcon(new ImageIcon(VentanaDecanato.class.getResource("/iconos/iconsLupa30.png")));
-		btnBuscarCarrera.setBounds(336, 411, 44, 38);
-		panel.add(btnBuscarCarrera);
 		
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(VentanaDecanato.class.getResource("/iconos/decanatos.png")));
@@ -135,7 +121,7 @@ public class VentanaDecanato extends JFrame {
 		JButton btnEliminar = new JButton("");
 		btnEliminar.setIcon(new ImageIcon(VentanaDecanato.class.getResource("/iconos/iconsEliminar50.png")));
 		btnEliminar.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		btnEliminar.setBackground(Color.BLACK);
+		btnEliminar.setBackground(Color.LIGHT_GRAY);
 		btnEliminar.setBounds(375, 496, 94, 59);
 		panel.add(btnEliminar);
 		
@@ -148,24 +134,19 @@ public class VentanaDecanato extends JFrame {
 		JButton btnGuardar = new JButton("");
 		btnGuardar.setIcon(new ImageIcon(VentanaDecanato.class.getResource("/iconos/iconGuardar.png")));
 		btnGuardar.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		btnGuardar.setBackground(Color.BLACK);
+		btnGuardar.setBackground(Color.LIGHT_GRAY);
 		btnGuardar.setBounds(22, 496, 94, 59);
 		panel.add(btnGuardar);
-		
-		JLabel carrera = new JLabel("Carrera");
-		carrera.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		carrera.setBounds(22, 383, 237, 32);
-		panel.add(carrera);
 		
 		JButton btnLimpiar = new JButton("");
 		btnLimpiar.setIcon(new ImageIcon(VentanaDecanato.class.getResource("/iconos/iconsLimpiar50.png")));
 		btnLimpiar.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		btnLimpiar.setBackground(Color.BLACK);
+		btnLimpiar.setBackground(Color.LIGHT_GRAY);
 		btnLimpiar.setBounds(258, 496, 94, 59);
 		panel.add(btnLimpiar);
 		
 		textTelefono = new JTextField();
-		textTelefono.setText("ingrese el telefono");
+		textTelefono.setToolTipText("ingrese el telefono");
 		textTelefono.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		textTelefono.setColumns(10);
 		textTelefono.setBackground(new Color(224, 255, 255));
@@ -175,12 +156,12 @@ public class VentanaDecanato extends JFrame {
 		JButton btnListado = new JButton("Ver Lista Decanato");
 		btnListado.setIcon(new ImageIcon(VentanaDecanato.class.getResource("/iconos/iconsLista50.png")));
 		btnListado.setFont(new Font("Segoe UI", Font.BOLD, 24));
-		btnListado.setBackground(Color.BLACK);
+		btnListado.setBackground(Color.LIGHT_GRAY);
 		btnListado.setBounds(61, 576, 369, 59);
 		panel.add(btnListado);
 		
 		textNombre = new JTextField();
-		textNombre.setText("ingrese el nombre");
+		textNombre.setToolTipText("ingrese el nombre");
 		textNombre.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		textNombre.setColumns(10);
 		textNombre.setBackground(new Color(224, 255, 255));

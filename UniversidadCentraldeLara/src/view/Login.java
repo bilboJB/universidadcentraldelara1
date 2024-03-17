@@ -16,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -24,8 +26,9 @@ public class Login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textUsario;
+	private JTextField textUsuario;
 	private JPasswordField txtClave;
+	private JButton btnIniciarSesion;
 
 	/**
 	 * Launch the application.
@@ -73,20 +76,20 @@ public class Login extends JFrame {
 		lblNewLabel.setBounds(46, 22, 474, 617);
 		panel.add(lblNewLabel);
 		
-		JButton btnIniciarSesion = new JButton("Ingresar");
-		btnIniciarSesion.setBackground(new Color(0, 0, 0));
+		btnIniciarSesion = new JButton("Ingresar");
+		btnIniciarSesion.setBackground(Color.LIGHT_GRAY);
 		btnIniciarSesion.setForeground(new Color(0, 0, 0));
 		btnIniciarSesion.setFont(new Font("Segoe UI", Font.BOLD, 36));
 		btnIniciarSesion.setBounds(663, 503, 208, 57);
 		panel.add(btnIniciarSesion);
 		
-		textUsario = new JTextField();
-		textUsario.setBackground(new Color(224, 255, 255));
-		textUsario.setFont(new Font("Segoe UI", Font.BOLD, 18));
-		textUsario.setText("Ingrese el nombre de usuario");
-		textUsario.setBounds(644, 267, 275, 37);
-		panel.add(textUsario);
-		textUsario.setColumns(10);
+		textUsuario = new JTextField();
+		textUsuario.setToolTipText("Ingrese el nombre de usuario");
+		textUsuario.setBackground(new Color(224, 255, 255));
+		textUsuario.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		textUsuario.setBounds(644, 267, 275, 37);
+		panel.add(textUsuario);
+		textUsuario.setColumns(10);
 		
 		JLabel iconoUsuario = new JLabel("");
 		iconoUsuario.setIcon(new ImageIcon(Login.class.getResource("/iconos/iconsUsuario50.png")));
@@ -119,5 +122,16 @@ public class Login extends JFrame {
 		fondo.setIcon(new ImageIcon(Login.class.getResource("/iconos/fondoMenu.jpg")));
 		fondo.setBounds(0, 0, 1014, 661);
 		panel.add(fondo);
+	}
+
+	public JTextField getTextUsuario() {
+		return textUsuario;
+	}
+
+	public JPasswordField getTxtClave() {
+		return txtClave;
+	}
+	public void agregarListener(ActionListener actionListener) {
+		btnIniciarSesion.addActionListener(actionListener);
 	}
 }

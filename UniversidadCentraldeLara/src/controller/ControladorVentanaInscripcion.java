@@ -21,7 +21,7 @@ public class ControladorVentanaInscripcion implements ActionListener{
 	private Inscripcion inscripcion;
 	private PeriodoAcademico periodo;
 	private Estudiante estudiante;
-	private String codigoCarrera, codigoEstudiante;
+	private int codigoCarrera, codigoEstudiante;
 	private Carrera carrera;
 	private ArrayList<Seccion> secciones;
 	private ArrayList<String> asignaturas;
@@ -43,7 +43,7 @@ public class ControladorVentanaInscripcion implements ActionListener{
 			for (int i = 0; i < rows; i++) {
 				if ((Boolean)(ventanaInscripcion.getModeloTabla().getValueAt(i, 0)) == true) {
 					asignaturas.add(ventanaInscripcion.getModeloTabla().getValueAt(i, 1).toString());
-					secciones.add(new Seccion(null, new Estudiante[] {estudiante}, ventanaInscripcion.getModeloTabla().getValueAt(i, 2).toString(), periodo));
+					secciones.add(new Seccion(null, new Estudiante[] {estudiante}, (int)ventanaInscripcion.getModeloTabla().getValueAt(i, 2), periodo));
 				}
 			}
 			//revisando si hay duplicados entre las asignaturas
@@ -128,16 +128,16 @@ public class ControladorVentanaInscripcion implements ActionListener{
 			if(!result.isBeforeFirst()){
 				//si no encuentra ningun estudiante
 				estudiante = null;
-				codigoCarrera = "";
-				codigoEstudiante = "";
+				codigoCarrera = 0;
+				codigoEstudiante = 0;
 				JOptionPane.showMessageDialog(ventanaInscripcion, "Estudiante no encontrado");
 				limpiar();
 				return;
 			}
 			while(result.next()) {
 				estudiante = new Estudiante(result.getString(1),result.getString(2),result.getString(3),result.getDate(4).toLocalDate(),result.getString(5).charAt(0),null);
-				codigoCarrera = result.getString(6);
-				codigoEstudiante = result.getString(7);
+				codigoCarrera = result.getInt(6);
+				codigoEstudiante = result.getInt(7);
 			}
 			String[] nombreApellido = estudiante.getNombreCompleto().split("\\s+");
 			ventanaInscripcion.getTextNombre().setText(nombreApellido[0]);
@@ -161,7 +161,7 @@ public class ControladorVentanaInscripcion implements ActionListener{
 			con = DriverManager.getConnection(db.getUrl(),db.getUser(),db.getPassword());
 			//crea el statement sql
 			pS = con.prepareStatement("SELECT nombre_carrera FROM public.\"Carrera\" WHERE id_carrera = ?;");	
-			pS.setString(1, codigoCarrera);
+			pS.setInt(1, codigoCarrera);
 			//se ejecuta el sql y se guarda el resultado
 			result = pS.executeQuery();
 			if(!result.isBeforeFirst()) {
@@ -189,8 +189,8 @@ public class ControladorVentanaInscripcion implements ActionListener{
 		try{
 			con = DriverManager.getConnection(db.getUrl(),db.getUser(),db.getPassword());
 			//crea el statement sql
-			pS = con.prepareStatement("SELECT nombre_asignatura, id_seccion FROM \"Seccion\" INNER JOIN \"Asignatura\" ON \"Seccion\".asignatura = \"Asignatura\".id_asignatura WHERE carrera = ?;");	
-			pS.setString(1, codigoCarrera);
+			pS = con.prepareStatement("SELECT nombre_asignatura, numero_seccion FROM \"Seccion\" INNER JOIN \"Asignatura\" ON \"Seccion\".asignatura = \"Asignatura\".id_asignatura WHERE carrera = ?;");	
+			pS.setInt(1, codigoCarrera);
 			//se ejecuta el query y se guarda el resultado
 			result = pS.executeQuery();
 			if(!result.isBeforeFirst()) {
@@ -198,7 +198,7 @@ public class ControladorVentanaInscripcion implements ActionListener{
 			}
 			while(result.next()) {
 				//se agregan los resultados a la tabla
-				ventanaInscripcion.getModeloTabla().addRow(new Object[] {false, result.getString(1), result.getString(2)});
+				ventanaInscripcion.getModeloTabla().addRow(new Object[] {false, result.getString(1), result.getInt(2)});
 			}
 		}
 		catch (SQLException ex) {
@@ -224,8 +224,8 @@ public class ControladorVentanaInscripcion implements ActionListener{
 			pS = con.prepareStatement("INSERT INTO public.\"EstudiantePorSeccion\" (estudiante, seccion) VALUES (?, ?);");
 			for (Seccion seccion : inscripcion.getSecciones()) {
 				//inserta en estudiantes por seccion
-				pS.setString(1, codigoEstudiante);
-				pS.setString(2, seccion.getCodigoSeccion());
+				pS.setInt(1, codigoEstudiante);
+				pS.setInt(2, seccion.getCodigoSeccion());
 				pS.executeUpdate();
 			}
 		} catch (SQLException ex) {

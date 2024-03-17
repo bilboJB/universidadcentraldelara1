@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Color;
@@ -22,7 +24,8 @@ public class Menu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	private JButton btnDecanato, btnEstudiante, btnProfesor, btnCarrera, btnAsignatura, btnSeccion, btnNotas, btnReporte;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -61,57 +64,57 @@ public class Menu extends JFrame {
 		menuPrincipal.setBounds(277, 35, 515, 75);
 		panel.add(menuPrincipal);
 		
-		JButton btnDecanato = new JButton("Decanato");
-		btnDecanato.setBackground(new Color(0, 0, 0));
+		btnDecanato = new JButton("Decanato");
+		btnDecanato.setBackground(Color.LIGHT_GRAY);
 		btnDecanato.setIcon(new ImageIcon(Menu.class.getResource("/iconos/universidad.png")));
 		btnDecanato.setFont(new Font("Segoe UI", Font.BOLD, 24));
 		btnDecanato.setBounds(234, 147, 222, 92);
 		panel.add(btnDecanato);
 		
-		JButton btnEstudiante = new JButton("Estudiante");
-		btnEstudiante.setBackground(new Color(0, 0, 0));
+		btnEstudiante = new JButton("Estudiante");
+		btnEstudiante.setBackground(Color.LIGHT_GRAY);
 		btnEstudiante.setIcon(new ImageIcon(Menu.class.getResource("/iconos/graduado.png")));
 		btnEstudiante.setFont(new Font("Segoe UI", Font.BOLD, 24));
 		btnEstudiante.setBounds(234, 279, 222, 92);
 		panel.add(btnEstudiante);
 		
-		JButton btnProfesor = new JButton("Profesor");
-		btnProfesor.setBackground(new Color(0, 0, 0));
+		btnProfesor = new JButton("Profesor");
+		btnProfesor.setBackground(Color.LIGHT_GRAY);
 		btnProfesor.setIcon(new ImageIcon(Menu.class.getResource("/iconos/profesor.png")));
 		btnProfesor.setFont(new Font("Segoe UI", Font.BOLD, 24));
 		btnProfesor.setBounds(234, 408, 222, 92);
 		panel.add(btnProfesor);
 		
-		JButton btnCarrera = new JButton("Carrera");
-		btnCarrera.setBackground(new Color(0, 0, 0));
+		btnCarrera = new JButton("Carrera");
+		btnCarrera.setBackground(Color.LIGHT_GRAY);
 		btnCarrera.setIcon(new ImageIcon(Menu.class.getResource("/iconos/carrera-profesional.png")));
 		btnCarrera.setFont(new Font("Segoe UI", Font.BOLD, 24));
 		btnCarrera.setBounds(234, 538, 222, 92);
 		panel.add(btnCarrera);
 		
-		JButton btnAsignatura = new JButton("Asignatura");
-		btnAsignatura.setBackground(new Color(0, 0, 0));
+		btnAsignatura = new JButton("Asignatura");
+		btnAsignatura.setBackground(Color.LIGHT_GRAY);
 		btnAsignatura.setIcon(new ImageIcon(Menu.class.getResource("/iconos/asignatura.png")));
 		btnAsignatura.setFont(new Font("Segoe UI", Font.BOLD, 24));
 		btnAsignatura.setBounds(566, 147, 237, 92);
 		panel.add(btnAsignatura);
 		
-		JButton btnSeccion = new JButton("Sección");
-		btnSeccion.setBackground(new Color(0, 0, 0));
+		btnSeccion = new JButton("Sección");
+		btnSeccion.setBackground(Color.LIGHT_GRAY);
 		btnSeccion.setIcon(new ImageIcon(Menu.class.getResource("/iconos/seccion.png")));
 		btnSeccion.setFont(new Font("Segoe UI", Font.BOLD, 24));
 		btnSeccion.setBounds(566, 279, 237, 92);
 		panel.add(btnSeccion);
 		
-		JButton btnNotas = new JButton("Notas");
-		btnNotas.setBackground(new Color(0, 0, 0));
+		btnNotas = new JButton("Notas");
+		btnNotas.setBackground(Color.LIGHT_GRAY);
 		btnNotas.setIcon(new ImageIcon(Menu.class.getResource("/iconos/notas.png")));
 		btnNotas.setFont(new Font("Segoe UI", Font.BOLD, 24));
 		btnNotas.setBounds(566, 408, 237, 92);
 		panel.add(btnNotas);
 		
-		JButton btnReporte = new JButton("Reportes");
-		btnReporte.setBackground(new Color(0, 0, 0));
+		btnReporte = new JButton("Reportes");
+		btnReporte.setBackground(Color.LIGHT_GRAY);
 		btnReporte.setIcon(new ImageIcon(Menu.class.getResource("/iconos/informe.png")));
 		btnReporte.setFont(new Font("Segoe UI", Font.BOLD, 24));
 		btnReporte.setBounds(566, 538, 237, 92);
@@ -138,6 +141,17 @@ public class Menu extends JFrame {
 		Fondo.setIcon(new ImageIcon(Menu.class.getResource("/iconos/fondoMenu.jpg")));
 		Fondo.setBounds(10, 1, 1004, 661);
 		panel.add(Fondo);
+	}
+	
+	public void agregarListener(ActionListener actionListener) {
+		btnAsignatura.addActionListener(actionListener);
+		btnCarrera.addActionListener(actionListener);
+		btnDecanato.addActionListener(actionListener);
+		btnEstudiante.addActionListener(actionListener);
+		btnNotas.addActionListener(actionListener);
+		btnProfesor.addActionListener(actionListener);
+		btnReporte.addActionListener(actionListener);
+		btnSeccion.addActionListener(actionListener);
 	}
 
 }

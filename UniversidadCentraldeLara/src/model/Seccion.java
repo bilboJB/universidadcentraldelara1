@@ -9,10 +9,10 @@ package model;
 public class Seccion {
     private Profesor profesor;
     private Estudiante[] estudiantes;
-    private String codigoSeccion;
+    private int codigoSeccion;
     private PeriodoAcademico periodoSeccion;
     
-    public Seccion(Profesor p, Estudiante[] e, String c, PeriodoAcademico pa) {
+    public Seccion(Profesor p, Estudiante[] e, int c, PeriodoAcademico pa) {
         this.profesor = p;
         this.estudiantes = e;
         this.codigoSeccion = c;
@@ -35,11 +35,11 @@ public class Seccion {
         this.estudiantes = estudiantes;
     }
 
-    public String getCodigoSeccion() {
+    public int getCodigoSeccion() {
         return codigoSeccion;
     }
 
-    public void setCodigoSeccion(String codigoSeccion) {
+    public void setCodigoSeccion(int codigoSeccion) {
         this.codigoSeccion = codigoSeccion;
     }
 

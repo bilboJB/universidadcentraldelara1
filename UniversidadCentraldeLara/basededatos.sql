@@ -240,3 +240,108 @@ INSERT INTO public."Profesor"(
 INSERT INTO public."Profesor"(
 	cedula_profesor, nombre_profesor, tlf_profesor, genero_profesor)
 	VALUES ('17000102', 'Julieta Fabregas', '04161414143', 'F');
+ALTER TABLE IF EXISTS public."Carrera" DROP COLUMN IF EXISTS decanato;
+
+ALTER TABLE IF EXISTS public."Carrera"
+    ADD COLUMN decanato serial NOT NULL;
+ALTER TABLE IF EXISTS public."Carrera" DROP CONSTRAINT IF EXISTS decanato;
+ALTER TABLE IF EXISTS public."Decanato" DROP COLUMN IF EXISTS id_decanato;
+
+ALTER TABLE IF EXISTS public."Decanato"
+    ADD COLUMN id_decanato serial NOT NULL;
+ALTER TABLE IF EXISTS public."Decanato"
+    ADD PRIMARY KEY (id_decanato);
+ALTER TABLE IF EXISTS public."Carrera"
+    ADD CONSTRAINT decanato FOREIGN KEY (decanato)
+    REFERENCES public."Decanato" (id_decanato) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+UPDATE public."Carrera"
+	SET decanato=1
+	WHERE id_carrera='ca1002';
+UPDATE public."Carrera"
+	SET decanato=2
+	WHERE id_carrera='ca2001';
+ALTER TABLE IF EXISTS public."Asignatura" DROP COLUMN IF EXISTS carrera;
+ALTER TABLE IF EXISTS public."Asignatura" DROP CONSTRAINT IF EXISTS carrera;
+ALTER TABLE IF EXISTS public."Estudiante" DROP COLUMN IF EXISTS carrera;
+ALTER TABLE IF EXISTS public."Estudiante" DROP CONSTRAINT IF EXISTS carrera;
+ALTER TABLE IF EXISTS public."Carrera" DROP COLUMN IF EXISTS id_carrera;
+
+ALTER TABLE IF EXISTS public."Carrera"
+    ADD COLUMN id_carrera serial NOT NULL;
+ALTER TABLE IF EXISTS public."Carrera"
+    ADD PRIMARY KEY (id_carrera);
+ALTER TABLE IF EXISTS public."Asignatura"
+    ADD COLUMN carrera serial;
+ALTER TABLE IF EXISTS public."Asignatura"
+    ADD CONSTRAINT carrera FOREIGN KEY (carrera)
+    REFERENCES public."Carrera" (id_carrera) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+UPDATE public."Asignatura"
+	SET carrera=1
+	WHERE id_asignatura='as100002';
+UPDATE public."Asignatura"
+	SET carrera=2
+	WHERE id_asignatura='as110001';
+UPDATE public."Asignatura"
+	SET carrera=2
+	WHERE id_asignatura='as110002';
+UPDATE public."Asignatura"
+	SET carrera=3
+	WHERE id_asignatura='as200001';
+ALTER TABLE IF EXISTS public."Estudiante"
+    ADD COLUMN carrera serial;
+ALTER TABLE IF EXISTS public."Estudiante"
+    ADD CONSTRAINT carrera FOREIGN KEY (carrera)
+    REFERENCES public."Carrera" (id_carrera) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+UPDATE public."Estudiante"
+	SET carrera=1
+	WHERE id_estudiante='es1000000001';
+ALTER TABLE IF EXISTS public."Seccion" DROP COLUMN IF EXISTS asignatura;
+ALTER TABLE IF EXISTS public."Seccion" DROP CONSTRAINT IF EXISTS asignatura;
+ALTER TABLE IF EXISTS public."Asignatura" DROP COLUMN IF EXISTS id_asignatura;
+
+ALTER TABLE IF EXISTS public."Asignatura"
+    ADD COLUMN id_asignatura serial NOT NULL;
+ALTER TABLE IF EXISTS public."Asignatura"
+    ADD PRIMARY KEY (id_asignatura);
+ALTER TABLE IF EXISTS public."Seccion"
+    ADD COLUMN asignatura serial;
+ALTER TABLE IF EXISTS public."Seccion"
+    ADD COLUMN asignatura serial;
+ALTER TABLE IF EXISTS public."Seccion"
+    ADD CONSTRAINT asignatura FOREIGN KEY (asignatura)
+    REFERENCES public."Asignatura" (id_asignatura) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+UPDATE public."Seccion"
+	SET asignatura=1
+	WHERE id_seccion='se1000002';
+UPDATE public."Seccion"
+	SET asignatura=2
+	WHERE id_seccion='se1000011';
+UPDATE public."Seccion"
+	SET asignatura=2
+	WHERE id_seccion='se1000012';
+ALTER TABLE IF EXISTS public."Seccion"
+    ADD COLUMN numero_seccion smallint;
+UPDATE public."Seccion"
+	SET numero_seccion=1
+	WHERE id_seccion='se1000001';
+UPDATE public."Seccion"
+	SET numero_seccion=1
+	WHERE id_seccion='se1000011';
+UPDATE public."Seccion"
+	SET numero_seccion=2
+	WHERE id_seccion='se1000002';
+UPDATE public."Seccion"
+	SET numero_seccion=2
+	WHERE id_seccion='se1000012';
