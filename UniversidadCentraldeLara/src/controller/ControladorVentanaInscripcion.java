@@ -213,6 +213,9 @@ public class ControladorVentanaInscripcion implements ActionListener{
 		ventanaInscripcion.getTablaInscrpcion().setModel(ventanaInscripcion.getModeloTabla());
 	}
 	private boolean distintasAsignaturas(ArrayList<String> lista) {
+		if (lista.isEmpty()) {
+			return false;
+		}
 		return lista.stream().distinct().count() == lista.size();
 	}
 	private void inscribirEstudiante() {

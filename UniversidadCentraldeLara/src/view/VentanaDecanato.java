@@ -20,6 +20,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class VentanaDecanato extends JFrame {
 
@@ -29,6 +32,8 @@ public class VentanaDecanato extends JFrame {
 	private JTextField textDireccion;
 	private JTextField textTelefono;
 	private JButton btnMenuPrincipal, btnGuardar, btnLimpiar, btnListado, btnEliminar, btnModificar;
+	private JTable table;
+	private DefaultTableModel modelo;
 
 	/**
 	 * Launch the application.
@@ -100,6 +105,7 @@ public class VentanaDecanato extends JFrame {
 		btnModificar.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		btnModificar.setBackground(Color.LIGHT_GRAY);
 		btnModificar.setBounds(139, 496, 94, 59);
+		btnModificar.setActionCommand("Modificar");
 		panel.add(btnModificar);
 		
 		JButton btnSalir = new JButton("");
@@ -116,16 +122,12 @@ public class VentanaDecanato extends JFrame {
 		textDireccion.setBounds(32, 263, 299, 38);
 		panel.add(textDireccion);
 		
-		JLabel lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(VentanaDecanato.class.getResource("/iconos/decanatos.png")));
-		lblLogo.setBounds(495, 75, 488, 523);
-		panel.add(lblLogo);
-		
 		btnEliminar = new JButton("");
 		btnEliminar.setIcon(new ImageIcon(VentanaDecanato.class.getResource("/iconos/iconsEliminar50.png")));
 		btnEliminar.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		btnEliminar.setBackground(Color.LIGHT_GRAY);
 		btnEliminar.setBounds(375, 496, 94, 59);
+		btnEliminar.setActionCommand("Eliminar");
 		panel.add(btnEliminar);
 		
 		btnMenuPrincipal = new JButton("Menu Principal");
@@ -173,6 +175,39 @@ public class VentanaDecanato extends JFrame {
 		textNombre.setBounds(32, 190, 299, 38);
 		panel.add(textNombre);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(500, 135, 465, 400);
+		panel.add(scrollPane);
+		
+		table = new JTable();
+		table.setShowVerticalLines(false);
+		table.setShowHorizontalLines(false);
+		table.setShowGrid(false);
+		
+		modelo = new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"Seleccion", "Nombre", "Direccion", "Telefono"
+				}
+			) {
+				Class[] columnTypes = new Class[] {
+					Boolean.class, Object.class, Object.class, Object.class
+				};
+				public Class getColumnClass(int columnIndex) {
+					return columnTypes[columnIndex];
+				}
+				boolean[] columnEditables = new boolean[] {
+					true, false, false, false
+				};
+				public boolean isCellEditable(int row, int column) {
+					return columnEditables[column];
+				}
+			};
+		table.setModel(modelo);
+		table.getColumnModel().getColumn(0).setPreferredWidth(55);
+		scrollPane.setViewportView(table);
+		
 		JLabel fondo = new JLabel("");
 		fondo.setIcon(new ImageIcon(VentanaDecanato.class.getResource("/iconos/fondoMenu.jpg")));
 		fondo.setBounds(0, 0, 1014, 661);
@@ -198,5 +233,16 @@ public class VentanaDecanato extends JFrame {
 	public JTextField getTextTelefono() {
 		return textTelefono;
 	}
-	
+
+	public DefaultTableModel getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(DefaultTableModel modelo) {
+		this.modelo = modelo;
+	}
+
+	public JTable getTable() {
+		return table;
+	}
 }
