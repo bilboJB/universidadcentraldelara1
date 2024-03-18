@@ -345,3 +345,72 @@ UPDATE public."Seccion"
 UPDATE public."Seccion"
 	SET numero_seccion=2
 	WHERE id_seccion='se1000012';
+ALTER TABLE IF EXISTS public."EstudiantePorSeccion" DROP COLUMN IF EXISTS seccion;
+ALTER TABLE IF EXISTS public."EstudiantePorSeccion" DROP CONSTRAINT IF EXISTS seccion;
+ALTER TABLE IF EXISTS public."Seccion" DROP COLUMN IF EXISTS id_seccion;
+
+ALTER TABLE IF EXISTS public."Seccion"
+    ADD COLUMN id_seccion serial NOT NULL;
+ALTER TABLE IF EXISTS public."Seccion"
+    ADD PRIMARY KEY (id_seccion);
+ALTER TABLE IF EXISTS public."EstudiantePorSeccion"
+    ADD COLUMN seccion serial;
+ALTER TABLE IF EXISTS public."EstudiantePorSeccion"
+    ADD CONSTRAINT seccion FOREIGN KEY (seccion)
+    REFERENCES public."Seccion" (id_seccion) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+UPDATE public."EstudiantePorSeccion"
+	SET seccion=3
+	WHERE id_porseccion=3;
+UPDATE public."EstudiantePorSeccion"
+	SET seccion=1
+	WHERE id_porseccion=5;
+ALTER TABLE IF EXISTS public."Calificacion" DROP COLUMN IF EXISTS id_calificacion;
+
+ALTER TABLE IF EXISTS public."Calificacion" DROP COLUMN IF EXISTS nota;
+
+ALTER TABLE IF EXISTS public."Calificacion" DROP COLUMN IF EXISTS estudiante;
+
+ALTER TABLE IF EXISTS public."Calificacion"
+    ADD COLUMN id_calificacion serial NOT NULL;
+
+ALTER TABLE IF EXISTS public."Calificacion"
+    ADD COLUMN nota double precision[];
+ALTER TABLE IF EXISTS public."Calificacion"
+    ADD PRIMARY KEY (id_calificacion);
+ALTER TABLE IF EXISTS public."Calificacion" DROP CONSTRAINT IF EXISTS estudiante;
+ALTER TABLE IF EXISTS public."EstudiantePorSeccion" DROP COLUMN IF EXISTS estudiante;
+ALTER TABLE IF EXISTS public."EstudiantePorSeccion" DROP CONSTRAINT IF EXISTS estudiante;
+ALTER TABLE IF EXISTS public."Estudiante" DROP COLUMN IF EXISTS id_estudiante;
+
+ALTER TABLE IF EXISTS public."Estudiante"
+    ADD COLUMN id_estudiante serial NOT NULL;
+ALTER TABLE IF EXISTS public."Estudiante"
+    ADD PRIMARY KEY (id_estudiante);
+ALTER TABLE IF EXISTS public."EstudiantePorSeccion"
+    ADD COLUMN estudiante serial NOT NULL;
+ALTER TABLE IF EXISTS public."EstudiantePorSeccion"
+    ADD CONSTRAINT estudiante FOREIGN KEY (estudiante)
+    REFERENCES public."Estudiante" (id_estudiante) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+ALTER TABLE IF EXISTS public."Calificacion"
+    ADD COLUMN estudiante serial NOT NULL;
+ALTER TABLE IF EXISTS public."Calificacion"
+    ADD CONSTRAINT estudiante FOREIGN KEY (estudiante)
+    REFERENCES public."Estudiante" (id_estudiante) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+UPDATE public."EstudiantePorSeccion"
+	SET estudiante=1
+	WHERE id_porseccion=3;
+UPDATE public."EstudiantePorSeccion"
+	SET estudiante=3
+	WHERE id_porseccion=4;
+UPDATE public."EstudiantePorSeccion"
+	SET estudiante=3
+	WHERE id_porseccion=5;

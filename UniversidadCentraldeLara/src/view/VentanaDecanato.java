@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.Color;
@@ -26,6 +28,7 @@ public class VentanaDecanato extends JFrame {
 	private JTextField textNombre;
 	private JTextField textDireccion;
 	private JTextField textTelefono;
+	private JButton btnMenuPrincipal, btnGuardar, btnLimpiar, btnListado, btnEliminar, btnModificar;
 
 	/**
 	 * Launch the application.
@@ -92,7 +95,7 @@ public class VentanaDecanato extends JFrame {
 		btnMinimizar.setBounds(902, 11, 44, 29);
 		panel.add(btnMinimizar);
 		
-		JButton btnModificar = new JButton("");
+		btnModificar = new JButton("");
 		btnModificar.setIcon(new ImageIcon(VentanaDecanato.class.getResource("/iconos/iconsEditar50.png")));
 		btnModificar.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		btnModificar.setBackground(Color.LIGHT_GRAY);
@@ -118,31 +121,33 @@ public class VentanaDecanato extends JFrame {
 		lblLogo.setBounds(495, 75, 488, 523);
 		panel.add(lblLogo);
 		
-		JButton btnEliminar = new JButton("");
+		btnEliminar = new JButton("");
 		btnEliminar.setIcon(new ImageIcon(VentanaDecanato.class.getResource("/iconos/iconsEliminar50.png")));
 		btnEliminar.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		btnEliminar.setBackground(Color.LIGHT_GRAY);
 		btnEliminar.setBounds(375, 496, 94, 59);
 		panel.add(btnEliminar);
 		
-		JButton btnMenuPrincipal = new JButton("Menu Principal");
+		btnMenuPrincipal = new JButton("Menu Principal");
 		btnMenuPrincipal.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		btnMenuPrincipal.setBackground(Color.BLACK);
+		btnMenuPrincipal.setBackground(Color.LIGHT_GRAY);
 		btnMenuPrincipal.setBounds(61, 11, 198, 28);
 		panel.add(btnMenuPrincipal);
 		
-		JButton btnGuardar = new JButton("");
+		btnGuardar = new JButton("");
 		btnGuardar.setIcon(new ImageIcon(VentanaDecanato.class.getResource("/iconos/iconGuardar.png")));
 		btnGuardar.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		btnGuardar.setBackground(Color.LIGHT_GRAY);
 		btnGuardar.setBounds(22, 496, 94, 59);
+		btnGuardar.setActionCommand("Guardar");
 		panel.add(btnGuardar);
 		
-		JButton btnLimpiar = new JButton("");
+		btnLimpiar = new JButton("");
 		btnLimpiar.setIcon(new ImageIcon(VentanaDecanato.class.getResource("/iconos/iconsLimpiar50.png")));
 		btnLimpiar.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		btnLimpiar.setBackground(Color.LIGHT_GRAY);
 		btnLimpiar.setBounds(258, 496, 94, 59);
+		btnLimpiar.setActionCommand("Limpiar");
 		panel.add(btnLimpiar);
 		
 		textTelefono = new JTextField();
@@ -153,7 +158,7 @@ public class VentanaDecanato extends JFrame {
 		textTelefono.setBounds(32, 336, 299, 38);
 		panel.add(textTelefono);
 		
-		JButton btnListado = new JButton("Ver Lista Decanato");
+		btnListado = new JButton("Ver Lista Decanato");
 		btnListado.setIcon(new ImageIcon(VentanaDecanato.class.getResource("/iconos/iconsLista50.png")));
 		btnListado.setFont(new Font("Segoe UI", Font.BOLD, 24));
 		btnListado.setBackground(Color.LIGHT_GRAY);
@@ -173,4 +178,25 @@ public class VentanaDecanato extends JFrame {
 		fondo.setBounds(0, 0, 1014, 661);
 		panel.add(fondo);
 	}
+	public void agregarListener(ActionListener actionListener) {
+		btnEliminar.addActionListener(actionListener);
+		btnGuardar.addActionListener(actionListener);
+		btnLimpiar.addActionListener(actionListener);
+		btnListado.addActionListener(actionListener);
+		btnMenuPrincipal.addActionListener(actionListener);
+		btnModificar.addActionListener(actionListener);
+	}
+
+	public JTextField getTextNombre() {
+		return textNombre;
+	}
+
+	public JTextField getTextDireccion() {
+		return textDireccion;
+	}
+
+	public JTextField getTextTelefono() {
+		return textTelefono;
+	}
+	
 }
