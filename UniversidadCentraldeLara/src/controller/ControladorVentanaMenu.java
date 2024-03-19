@@ -14,6 +14,7 @@ public class ControladorVentanaMenu implements ActionListener{
 	private ControladorVentanaSeccion cVentanaSeccion;
 	private ControladorVentanaNotas cVentanaNotas;
 	private ControladorVentanaReportes cVentanaReportes;
+	private ControladorVentanaValidacionProfesor cVentanaValidacionProfesor;
 	
 	public ControladorVentanaMenu() {
 		menu = new Menu();
@@ -62,8 +63,8 @@ public class ControladorVentanaMenu implements ActionListener{
 		
 		if(e.getActionCommand().equalsIgnoreCase("Notas")) {
 			//para el boton notas
-			cVentanaNotas = new ControladorVentanaNotas();
-			menu.setVisible(false);
+			cVentanaValidacionProfesor = new ControladorVentanaValidacionProfesor();
+			cVentanaValidacionProfesor.setMenu(menu);
 		}
 
 		if(e.getActionCommand().equalsIgnoreCase("Reportes")) {

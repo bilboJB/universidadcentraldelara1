@@ -414,3 +414,11 @@ UPDATE public."EstudiantePorSeccion"
 UPDATE public."EstudiantePorSeccion"
 	SET estudiante=3
 	WHERE id_porseccion=5;
+ALTER TABLE IF EXISTS public."Calificacion"
+    ADD COLUMN seccion serial;
+ALTER TABLE IF EXISTS public."Calificacion"
+    ADD CONSTRAINT seccion FOREIGN KEY (seccion)
+    REFERENCES public."Seccion" (id_seccion) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;

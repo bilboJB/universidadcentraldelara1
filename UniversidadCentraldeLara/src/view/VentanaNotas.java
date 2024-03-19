@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.Color;
@@ -31,6 +33,7 @@ public class VentanaNotas extends JFrame {
 	private JTextField textNota2;
 	private JTextField textNota3;
 	private JTextField textPromedio;
+	private JButton btnMenuPrincipal, btnBuscarCedulaEstud, btnCalcular, btnGuardar, btnModificar, btnLimpiar, btnEliminar, btnVerListado;
 
 	/**
 	 * Launch the application.
@@ -71,9 +74,9 @@ public class VentanaNotas extends JFrame {
 		btnVolver.setBounds(10, 10, 44, 28);
 		contentPane.add(btnVolver);
 		
-		JButton btnMenuPrincipal = new JButton("Menu Principal");
+		btnMenuPrincipal = new JButton("Menu Principal");
 		btnMenuPrincipal.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		btnMenuPrincipal.setBackground(Color.BLACK);
+		btnMenuPrincipal.setBackground(Color.LIGHT_GRAY);
 		btnMenuPrincipal.setBounds(61, 10, 198, 28);
 		contentPane.add(btnMenuPrincipal);
 		
@@ -95,15 +98,17 @@ public class VentanaNotas extends JFrame {
 		contentPane.add(cedulaEstudiate);
 		
 		textCedula = new JTextField();
-		textCedula.setText("ingrese la cédula del Estudiante");
+		textCedula.setToolTipText("ingrese la cédula del Estudiante");
 		textCedula.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		textCedula.setColumns(10);
 		textCedula.setBackground(new Color(224, 255, 255));
 		textCedula.setBounds(45, 184, 247, 32);
 		contentPane.add(textCedula);
 		
-		JButton btnBuscarCedulaEstud = new JButton("");
+		btnBuscarCedulaEstud = new JButton("");
+		btnBuscarCedulaEstud.setIcon(new ImageIcon(VentanaNotas.class.getResource("/iconos/iconsLupa30.png")));
 		btnBuscarCedulaEstud.setBounds(293, 184, 44, 32);
+		btnBuscarCedulaEstud.setActionCommand("Cedula");
 		contentPane.add(btnBuscarCedulaEstud);
 		
 		JLabel lblNombreEstud = new JLabel("Nombre");
@@ -112,6 +117,7 @@ public class VentanaNotas extends JFrame {
 		contentPane.add(lblNombreEstud);
 		
 		textNombre = new JTextField();
+		textNombre.setEditable(false);
 		textNombre.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		textNombre.setColumns(10);
 		textNombre.setBackground(new Color(224, 255, 255));
@@ -124,16 +130,12 @@ public class VentanaNotas extends JFrame {
 		contentPane.add(lblApellidoEstud);
 		
 		textApellido = new JTextField();
+		textApellido.setEditable(false);
 		textApellido.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		textApellido.setColumns(10);
 		textApellido.setBackground(new Color(224, 255, 255));
 		textApellido.setBounds(553, 184, 174, 32);
 		contentPane.add(textApellido);
-		
-		JLabel periodoAcademico = new JLabel("Periodo Académico");
-		periodoAcademico.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		periodoAcademico.setBounds(751, 156, 186, 32);
-		contentPane.add(periodoAcademico);
 		
 		JLabel lblNotaI = new JLabel("Nota 1:");
 		lblNotaI.setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -171,14 +173,15 @@ public class VentanaNotas extends JFrame {
 		textNota3.setBounds(571, 249, 72, 42);
 		contentPane.add(textNota3);
 		
-		JButton btnCalcular = new JButton("Calcular");
+		btnCalcular = new JButton("Calcular");
 		btnCalcular.setIcon(new ImageIcon(VentanaNotas.class.getResource("/iconos/calcular.png")));
 		btnCalcular.setFont(new Font("Segoe UI", Font.BOLD, 26));
-		btnCalcular.setBackground(Color.BLACK);
+		btnCalcular.setBackground(Color.LIGHT_GRAY);
 		btnCalcular.setBounds(311, 315, 237, 53);
 		contentPane.add(btnCalcular);
 		
 		textPromedio = new JTextField();
+		textPromedio.setEditable(false);
 		textPromedio.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		textPromedio.setColumns(10);
 		textPromedio.setBackground(new Color(224, 255, 255));
@@ -190,38 +193,42 @@ public class VentanaNotas extends JFrame {
 		lblPromedio.setBounds(63, 406, 87, 24);
 		contentPane.add(lblPromedio);
 		
-		JButton btnGuardar = new JButton("");
+		btnGuardar = new JButton("");
 		btnGuardar.setIcon(new ImageIcon(VentanaNotas.class.getResource("/iconos/iconGuardar.png")));
 		btnGuardar.setFont(new Font("Segoe UI", Font.BOLD, 26));
-		btnGuardar.setBackground(Color.BLACK);
+		btnGuardar.setBackground(Color.LIGHT_GRAY);
 		btnGuardar.setBounds(49, 477, 107, 65);
+		btnGuardar.setActionCommand("Guardar");
 		contentPane.add(btnGuardar);
 		
-		JButton btnModificar = new JButton("");
+		btnModificar = new JButton("");
 		btnModificar.setIcon(new ImageIcon(VentanaNotas.class.getResource("/iconos/iconsEditar50.png")));
 		btnModificar.setFont(new Font("Segoe UI", Font.BOLD, 26));
-		btnModificar.setBackground(Color.BLACK);
+		btnModificar.setBackground(Color.LIGHT_GRAY);
 		btnModificar.setBounds(182, 477, 107, 65);
+		btnModificar.setActionCommand("Modificar");
 		contentPane.add(btnModificar);
 		
-		JButton btnLimpiar = new JButton("");
+		btnLimpiar = new JButton("");
 		btnLimpiar.setIcon(new ImageIcon(VentanaNotas.class.getResource("/iconos/iconsLimpiar50.png")));
 		btnLimpiar.setFont(new Font("Segoe UI", Font.BOLD, 26));
-		btnLimpiar.setBackground(Color.BLACK);
+		btnLimpiar.setBackground(Color.LIGHT_GRAY);
 		btnLimpiar.setBounds(320, 477, 104, 65);
+		btnLimpiar.setActionCommand("Limpiar");
 		contentPane.add(btnLimpiar);
 		
-		JButton btnEliminar = new JButton("");
+		btnEliminar = new JButton("");
 		btnEliminar.setIcon(new ImageIcon(VentanaNotas.class.getResource("/iconos/iconsEliminar50.png")));
 		btnEliminar.setFont(new Font("Segoe UI", Font.BOLD, 26));
-		btnEliminar.setBackground(Color.BLACK);
+		btnEliminar.setBackground(Color.LIGHT_GRAY);
 		btnEliminar.setBounds(453, 477, 104, 65);
+		btnEliminar.setActionCommand("Eliminar");
 		contentPane.add(btnEliminar);
 		
-		JButton btnVerListado = new JButton("Ver Listado");
+		btnVerListado = new JButton("Ver Notas");
 		btnVerListado.setIcon(new ImageIcon(VentanaNotas.class.getResource("/iconos/iconsLista50.png")));
 		btnVerListado.setFont(new Font("Segoe UI", Font.BOLD, 24));
-		btnVerListado.setBackground(Color.BLACK);
+		btnVerListado.setBackground(Color.LIGHT_GRAY);
 		btnVerListado.setBounds(167, 568, 282, 65);
 		contentPane.add(btnVerListado);
 		
@@ -230,13 +237,47 @@ public class VentanaNotas extends JFrame {
 		lblImagen.setBounds(696, 249, 294, 380);
 		contentPane.add(lblImagen);
 		
-		JDateChooser dateChooserPeriodoAcad = new JDateChooser();
-		dateChooserPeriodoAcad.setBounds(761, 184, 171, 28);
-		contentPane.add(dateChooserPeriodoAcad);
-		
 		JLabel fondo = new JLabel("");
 		fondo.setIcon(new ImageIcon(VentanaNotas.class.getResource("/iconos/fondoMenu.jpg")));
 		fondo.setBounds(0, 0, 1014, 661);
 		contentPane.add(fondo);
+	}
+
+	public JTextField getTextCedula() {
+		return textCedula;
+	}
+
+	public JTextField getTextNombre() {
+		return textNombre;
+	}
+
+	public JTextField getTextApellido() {
+		return textApellido;
+	}
+
+	public JTextField getTextNota1() {
+		return textNota1;
+	}
+
+	public JTextField getTextNota2() {
+		return textNota2;
+	}
+
+	public JTextField getTextNota3() {
+		return textNota3;
+	}
+
+	public JTextField getTextPromedio() {
+		return textPromedio;
+	}
+	public void agregarListener(ActionListener actionListener) {
+		btnBuscarCedulaEstud.addActionListener(actionListener);
+		btnCalcular.addActionListener(actionListener);
+		btnEliminar.addActionListener(actionListener);
+		btnGuardar.addActionListener(actionListener);
+		btnLimpiar.addActionListener(actionListener);
+		btnMenuPrincipal.addActionListener(actionListener);
+		btnVerListado.addActionListener(actionListener);
+		btnModificar.addActionListener(actionListener);
 	}
 }
