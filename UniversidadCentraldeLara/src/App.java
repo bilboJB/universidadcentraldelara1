@@ -10,8 +10,5 @@ public class App {
     public static void main(String[] args) throws Exception {
     	//correr la ventana con el crud implementado
     	ControladorVentanaLogin controladorVentanaLogin = new ControladorVentanaLogin();
-    	//ControladorVentanaListadoPorCarrera controladorListadoC = new ControladorVentanaListadoPorCarrera();
-    	//ControladorVentanaListadoSeccion cListadoSeccion = new ControladorVentanaListadoSeccion();
-    	//ControladorVentanaInscripcion controladorInscripcion = new ControladorVentanaInscripcion();
     }
 }

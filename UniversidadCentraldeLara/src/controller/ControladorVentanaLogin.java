@@ -10,9 +10,9 @@ import view.Login;
 
 public class ControladorVentanaLogin implements ActionListener{
 	private Login login;
-	private String usuario;
-	private String password;
+	private String usuario, password, inscripU, inscripP;
 	private ControladorVentanaMenu controladorVentanaMenu;
+	private ControladorVentanaInscripcion cVentanaInscripcion;
 	
 	public ControladorVentanaLogin() {
 		login = new Login();
@@ -20,6 +20,8 @@ public class ControladorVentanaLogin implements ActionListener{
 		login.agregarListener(this);
 		usuario = "admin";
 		password = "admin";
+		inscripU = "inscripcion";
+		inscripP = "inscripcion";
 	}
 	
 	@Override
@@ -29,6 +31,10 @@ public class ControladorVentanaLogin implements ActionListener{
 			//para el boton ingresar
 			if(login.getTextUsuario().getText().equals(usuario) && password.equals(contra)) {
 				crearMenu();
+				login.setVisible(false);
+			}
+			else if (login.getTextUsuario().getText().equals(inscripU) && inscripP.equals(contra)) {
+				cVentanaInscripcion = new ControladorVentanaInscripcion();
 				login.setVisible(false);
 			}
 			else {

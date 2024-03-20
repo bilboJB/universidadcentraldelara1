@@ -141,7 +141,7 @@ public class VentanaInscripcion extends JFrame {
 		btnGuardar.setBounds(413, 559, 210, 65);
 		btnGuardar.setIcon(new ImageIcon(VentanaInscripcion.class.getResource("/iconos/iconGuardar.png")));
 		btnGuardar.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		btnGuardar.setBackground(Color.BLACK);
+		btnGuardar.setBackground(Color.LIGHT_GRAY);
 		panel.add(btnGuardar);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -212,7 +212,7 @@ public class VentanaInscripcion extends JFrame {
 		
 		JButton btnMenuPrincipal = new JButton("Menu Principal");
 		btnMenuPrincipal.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		btnMenuPrincipal.setBackground(Color.BLACK);
+		btnMenuPrincipal.setBackground(Color.LIGHT_GRAY);
 		btnMenuPrincipal.setBounds(64, 11, 198, 28);
 		panel.add(btnMenuPrincipal);
 		
