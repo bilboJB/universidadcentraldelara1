@@ -89,7 +89,7 @@ public class VentanaListadoSeccion extends JFrame {
 				new Object[][] {
 				},
 				new String[] {
-					"Decanato", "Carrera", "Asignatura", "Docente", "Seccion", "#Aprovados", "#Aplazados", "Encima promedio", "Debajo promedio"
+					"Decanato", "Carrera", "Asignatura", "Docente", "Seccion", "#Aprobados", "#Aplazados", "Encima promedio", "Debajo promedio"
 				}
 			) {
 				boolean[] columnEditables = new boolean[] {
