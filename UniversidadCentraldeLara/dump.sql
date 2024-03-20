@@ -47,67 +47,244 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public."Asignatura" (
-    id_asignatura character varying(12) NOT NULL,
     nombre_asignatura character varying(32) NOT NULL,
-    carrera character varying(12)
+    carrera integer NOT NULL,
+    id_asignatura integer NOT NULL
 );
 
 
 ALTER TABLE public."Asignatura" OWNER TO postgres;
 
 --
+-- Name: Asignatura_carrera_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Asignatura_carrera_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Asignatura_carrera_seq" OWNER TO postgres;
+
+--
+-- Name: Asignatura_carrera_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Asignatura_carrera_seq" OWNED BY public."Asignatura".carrera;
+
+
+--
+-- Name: Asignatura_id_asignatura_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Asignatura_id_asignatura_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Asignatura_id_asignatura_seq" OWNER TO postgres;
+
+--
+-- Name: Asignatura_id_asignatura_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Asignatura_id_asignatura_seq" OWNED BY public."Asignatura".id_asignatura;
+
+
+--
 -- Name: Calificacion; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public."Calificacion" (
-    id_calificacion character varying(12) NOT NULL,
-    nota double precision,
     promedio double precision,
-    estudiante character varying(12)
+    id_calificacion integer NOT NULL,
+    nota double precision[],
+    estudiante integer NOT NULL,
+    seccion integer NOT NULL
 );
 
 
 ALTER TABLE public."Calificacion" OWNER TO postgres;
 
 --
+-- Name: Calificacion_estudiante_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Calificacion_estudiante_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Calificacion_estudiante_seq" OWNER TO postgres;
+
+--
+-- Name: Calificacion_estudiante_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Calificacion_estudiante_seq" OWNED BY public."Calificacion".estudiante;
+
+
+--
+-- Name: Calificacion_id_calificacion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Calificacion_id_calificacion_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Calificacion_id_calificacion_seq" OWNER TO postgres;
+
+--
+-- Name: Calificacion_id_calificacion_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Calificacion_id_calificacion_seq" OWNED BY public."Calificacion".id_calificacion;
+
+
+--
+-- Name: Calificacion_seccion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Calificacion_seccion_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Calificacion_seccion_seq" OWNER TO postgres;
+
+--
+-- Name: Calificacion_seccion_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Calificacion_seccion_seq" OWNED BY public."Calificacion".seccion;
+
+
+--
 -- Name: Carrera; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public."Carrera" (
-    id_carrera character varying(12) NOT NULL,
     nombre_carrera character varying(32) NOT NULL,
-    decanato character varying(12)
+    decanato integer NOT NULL,
+    id_carrera integer NOT NULL
 );
 
 
 ALTER TABLE public."Carrera" OWNER TO postgres;
 
 --
+-- Name: Carrera_decanato_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Carrera_decanato_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Carrera_decanato_seq" OWNER TO postgres;
+
+--
+-- Name: Carrera_decanato_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Carrera_decanato_seq" OWNED BY public."Carrera".decanato;
+
+
+--
+-- Name: Carrera_id_carrera_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Carrera_id_carrera_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Carrera_id_carrera_seq" OWNER TO postgres;
+
+--
+-- Name: Carrera_id_carrera_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Carrera_id_carrera_seq" OWNED BY public."Carrera".id_carrera;
+
+
+--
 -- Name: Decanato; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public."Decanato" (
-    id_decanato character varying(12) NOT NULL,
     nombre_decanato character varying(80) NOT NULL,
     direccion_decanato character varying(100),
-    tlf_decanato character varying(11)
+    tlf_decanato character varying(11),
+    id_decanato integer NOT NULL
 );
 
 
 ALTER TABLE public."Decanato" OWNER TO postgres;
 
 --
+-- Name: Decanato_id_decanato_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Decanato_id_decanato_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Decanato_id_decanato_seq" OWNER TO postgres;
+
+--
+-- Name: Decanato_id_decanato_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Decanato_id_decanato_seq" OWNED BY public."Decanato".id_decanato;
+
+
+--
 -- Name: Estudiante; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public."Estudiante" (
-    id_estudiante character varying(12) NOT NULL,
     cedula_estudiante character varying(9) NOT NULL,
     nombre_estudiante character varying(40) NOT NULL,
     genero_estudiante "char",
-    carrera character varying(12),
     tlf_estudiante character varying(11),
-    fecha_nacimiento date
+    fecha_nacimiento date,
+    carrera integer NOT NULL,
+    id_estudiante integer NOT NULL
 );
 
 
@@ -118,13 +295,35 @@ ALTER TABLE public."Estudiante" OWNER TO postgres;
 --
 
 CREATE TABLE public."EstudiantePorSeccion" (
-    estudiante character varying(12) NOT NULL,
-    seccion character varying(12) NOT NULL,
-    id_porseccion integer NOT NULL
+    id_porseccion integer NOT NULL,
+    seccion integer NOT NULL,
+    estudiante integer NOT NULL
 );
 
 
 ALTER TABLE public."EstudiantePorSeccion" OWNER TO postgres;
+
+--
+-- Name: EstudiantePorSeccion_estudiante_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."EstudiantePorSeccion_estudiante_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."EstudiantePorSeccion_estudiante_seq" OWNER TO postgres;
+
+--
+-- Name: EstudiantePorSeccion_estudiante_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."EstudiantePorSeccion_estudiante_seq" OWNED BY public."EstudiantePorSeccion".estudiante;
+
 
 --
 -- Name: EstudiantePorSeccion_id_porseccion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -146,6 +345,72 @@ ALTER SEQUENCE public."EstudiantePorSeccion_id_porseccion_seq" OWNER TO postgres
 --
 
 ALTER SEQUENCE public."EstudiantePorSeccion_id_porseccion_seq" OWNED BY public."EstudiantePorSeccion".id_porseccion;
+
+
+--
+-- Name: EstudiantePorSeccion_seccion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."EstudiantePorSeccion_seccion_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."EstudiantePorSeccion_seccion_seq" OWNER TO postgres;
+
+--
+-- Name: EstudiantePorSeccion_seccion_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."EstudiantePorSeccion_seccion_seq" OWNED BY public."EstudiantePorSeccion".seccion;
+
+
+--
+-- Name: Estudiante_carrera_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Estudiante_carrera_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Estudiante_carrera_seq" OWNER TO postgres;
+
+--
+-- Name: Estudiante_carrera_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Estudiante_carrera_seq" OWNED BY public."Estudiante".carrera;
+
+
+--
+-- Name: Estudiante_id_estudiante_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Estudiante_id_estudiante_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Estudiante_id_estudiante_seq" OWNER TO postgres;
+
+--
+-- Name: Estudiante_id_estudiante_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Estudiante_id_estudiante_seq" OWNED BY public."Estudiante".id_estudiante;
 
 
 --
@@ -204,15 +469,60 @@ ALTER SEQUENCE public."Profesor_id_profesor_seq" OWNED BY public."Profesor".id_p
 --
 
 CREATE TABLE public."Seccion" (
-    id_seccion character varying(12) NOT NULL,
     max_estudiantes smallint NOT NULL,
     periodo character varying(6),
-    asignatura character varying(12),
-    profesor integer NOT NULL
+    profesor integer NOT NULL,
+    asignatura integer NOT NULL,
+    numero_seccion smallint,
+    id_seccion integer NOT NULL
 );
 
 
 ALTER TABLE public."Seccion" OWNER TO postgres;
+
+--
+-- Name: Seccion_asignatura_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Seccion_asignatura_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Seccion_asignatura_seq" OWNER TO postgres;
+
+--
+-- Name: Seccion_asignatura_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Seccion_asignatura_seq" OWNED BY public."Seccion".asignatura;
+
+
+--
+-- Name: Seccion_id_seccion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Seccion_id_seccion_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Seccion_id_seccion_seq" OWNER TO postgres;
+
+--
+-- Name: Seccion_id_seccion_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Seccion_id_seccion_seq" OWNED BY public."Seccion".id_seccion;
+
 
 --
 -- Name: Seccion_profesor_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -237,10 +547,94 @@ ALTER SEQUENCE public."Seccion_profesor_seq" OWNED BY public."Seccion".profesor;
 
 
 --
+-- Name: Asignatura carrera; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Asignatura" ALTER COLUMN carrera SET DEFAULT nextval('public."Asignatura_carrera_seq"'::regclass);
+
+
+--
+-- Name: Asignatura id_asignatura; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Asignatura" ALTER COLUMN id_asignatura SET DEFAULT nextval('public."Asignatura_id_asignatura_seq"'::regclass);
+
+
+--
+-- Name: Calificacion id_calificacion; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Calificacion" ALTER COLUMN id_calificacion SET DEFAULT nextval('public."Calificacion_id_calificacion_seq"'::regclass);
+
+
+--
+-- Name: Calificacion estudiante; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Calificacion" ALTER COLUMN estudiante SET DEFAULT nextval('public."Calificacion_estudiante_seq"'::regclass);
+
+
+--
+-- Name: Calificacion seccion; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Calificacion" ALTER COLUMN seccion SET DEFAULT nextval('public."Calificacion_seccion_seq"'::regclass);
+
+
+--
+-- Name: Carrera decanato; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Carrera" ALTER COLUMN decanato SET DEFAULT nextval('public."Carrera_decanato_seq"'::regclass);
+
+
+--
+-- Name: Carrera id_carrera; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Carrera" ALTER COLUMN id_carrera SET DEFAULT nextval('public."Carrera_id_carrera_seq"'::regclass);
+
+
+--
+-- Name: Decanato id_decanato; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Decanato" ALTER COLUMN id_decanato SET DEFAULT nextval('public."Decanato_id_decanato_seq"'::regclass);
+
+
+--
+-- Name: Estudiante carrera; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Estudiante" ALTER COLUMN carrera SET DEFAULT nextval('public."Estudiante_carrera_seq"'::regclass);
+
+
+--
+-- Name: Estudiante id_estudiante; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Estudiante" ALTER COLUMN id_estudiante SET DEFAULT nextval('public."Estudiante_id_estudiante_seq"'::regclass);
+
+
+--
 -- Name: EstudiantePorSeccion id_porseccion; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public."EstudiantePorSeccion" ALTER COLUMN id_porseccion SET DEFAULT nextval('public."EstudiantePorSeccion_id_porseccion_seq"'::regclass);
+
+
+--
+-- Name: EstudiantePorSeccion seccion; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."EstudiantePorSeccion" ALTER COLUMN seccion SET DEFAULT nextval('public."EstudiantePorSeccion_seccion_seq"'::regclass);
+
+
+--
+-- Name: EstudiantePorSeccion estudiante; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."EstudiantePorSeccion" ALTER COLUMN estudiante SET DEFAULT nextval('public."EstudiantePorSeccion_estudiante_seq"'::regclass);
 
 
 --
@@ -258,15 +652,29 @@ ALTER TABLE ONLY public."Seccion" ALTER COLUMN profesor SET DEFAULT nextval('pub
 
 
 --
+-- Name: Seccion asignatura; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Seccion" ALTER COLUMN asignatura SET DEFAULT nextval('public."Seccion_asignatura_seq"'::regclass);
+
+
+--
+-- Name: Seccion id_seccion; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Seccion" ALTER COLUMN id_seccion SET DEFAULT nextval('public."Seccion_id_seccion_seq"'::regclass);
+
+
+--
 -- Data for Name: Asignatura; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."Asignatura" (id_asignatura, nombre_asignatura, carrera) FROM stdin;
-as100001	Matematica I	ca1001
-as100002	Estructuras Discretas I	ca1001
-as200001	Fundamentos de Derecho	ca2001
-as110001	Matematica I	ca1002
-as110002	Introd. a la Comput	ca1002
+COPY public."Asignatura" (nombre_asignatura, carrera, id_asignatura) FROM stdin;
+Matematica I	1	1
+Estructuras Discretas I	1	2
+Matematica I	2	3
+Introd. a la Comput	2	4
+Fundamentos de Derecho	3	5
 \.
 
 
@@ -274,7 +682,8 @@ as110002	Introd. a la Comput	ca1002
 -- Data for Name: Calificacion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."Calificacion" (id_calificacion, nota, promedio, estudiante) FROM stdin;
+COPY public."Calificacion" (promedio, id_calificacion, nota, estudiante, seccion) FROM stdin;
+12.666666666666666	2	{12,14,12}	1	1
 \.
 
 
@@ -282,10 +691,10 @@ COPY public."Calificacion" (id_calificacion, nota, promedio, estudiante) FROM st
 -- Data for Name: Carrera; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."Carrera" (id_carrera, nombre_carrera, decanato) FROM stdin;
-ca1001	Ingenieria informatica	de1000
-ca1002	Licenciatura Matematicas	de1000
-ca2001	Licenciatura en Administracion	de1001
+COPY public."Carrera" (nombre_carrera, decanato, id_carrera) FROM stdin;
+Ingenieria informatica	1	1
+Licenciatura Matematicas	1	2
+Licenciatura en Administracion	2	3
 \.
 
 
@@ -293,9 +702,10 @@ ca2001	Licenciatura en Administracion	de1001
 -- Data for Name: Decanato; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."Decanato" (id_decanato, nombre_decanato, direccion_decanato, tlf_decanato) FROM stdin;
-de1000	Ciencias y Tecnologia	Avenida las Industrias	02512591450
-de1001	Ciencias Economicas y Empresariales	Calle 8 entre 19 y 20	02512591419
+COPY public."Decanato" (nombre_decanato, direccion_decanato, tlf_decanato, id_decanato) FROM stdin;
+Ciencias y Tecnologia	Avenida las Industrias	02512591450	1
+Ciencias Economicas y Empresariales	Calle 8 entre 19 y 20	02512591419	2
+Ingenieria Civil	Carrera 5	02512562101	3
 \.
 
 
@@ -303,10 +713,10 @@ de1001	Ciencias Economicas y Empresariales	Calle 8 entre 19 y 20	02512591419
 -- Data for Name: Estudiante; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."Estudiante" (id_estudiante, cedula_estudiante, nombre_estudiante, genero_estudiante, carrera, tlf_estudiante, fecha_nacimiento) FROM stdin;
-es1000000000	27000000	Pedro Paez	M	ca1001	04242424242	1999-02-28
-es1000000001	27000001	Maria Paez	F	ca1001	04242424243	1999-03-28
-es2000000001	27000021	Josefina Diaz	F	ca2001	04242324243	1999-04-28
+COPY public."Estudiante" (cedula_estudiante, nombre_estudiante, genero_estudiante, tlf_estudiante, fecha_nacimiento, carrera, id_estudiante) FROM stdin;
+27000000	Pedro Paez	M	04242424242	1999-02-28	1	1
+27000021	Josefina Diaz	F	04242324243	1999-04-28	3	2
+27000001	Maria Paez	F	04242424243	1999-03-28	1	3
 \.
 
 
@@ -314,11 +724,9 @@ es2000000001	27000021	Josefina Diaz	F	ca2001	04242324243	1999-04-28
 -- Data for Name: EstudiantePorSeccion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."EstudiantePorSeccion" (estudiante, seccion, id_porseccion) FROM stdin;
-es1000000000	se1000001	2
-es1000000000	se1000011	3
-es1000000001	se1000001	4
-es1000000001	se1000012	5
+COPY public."EstudiantePorSeccion" (id_porseccion, seccion, estudiante) FROM stdin;
+6	1	1
+7	2	1
 \.
 
 
@@ -347,19 +755,103 @@ COPY public."Profesor" (id_profesor, cedula_profesor, nombre_profesor, tlf_profe
 -- Data for Name: Seccion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."Seccion" (id_seccion, max_estudiantes, periodo, asignatura, profesor) FROM stdin;
-se1000001	32	2024-1	as100001	1
-se1000002	32	2024-1	as100001	2
-se1000011	32	2024-1	as100002	3
-se1000012	32	2024-1	as100002	4
+COPY public."Seccion" (max_estudiantes, periodo, profesor, asignatura, numero_seccion, id_seccion) FROM stdin;
+32	2024-1	1	1	1	1
+32	2024-1	3	2	1	2
+32	2024-1	2	1	2	3
+32	2024-1	4	2	2	4
 \.
+
+
+--
+-- Name: Asignatura_carrera_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Asignatura_carrera_seq"', 5, true);
+
+
+--
+-- Name: Asignatura_id_asignatura_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Asignatura_id_asignatura_seq"', 5, true);
+
+
+--
+-- Name: Calificacion_estudiante_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Calificacion_estudiante_seq"', 1, false);
+
+
+--
+-- Name: Calificacion_id_calificacion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Calificacion_id_calificacion_seq"', 2, true);
+
+
+--
+-- Name: Calificacion_seccion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Calificacion_seccion_seq"', 1, false);
+
+
+--
+-- Name: Carrera_decanato_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Carrera_decanato_seq"', 3, true);
+
+
+--
+-- Name: Carrera_id_carrera_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Carrera_id_carrera_seq"', 3, true);
+
+
+--
+-- Name: Decanato_id_decanato_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Decanato_id_decanato_seq"', 4, true);
+
+
+--
+-- Name: EstudiantePorSeccion_estudiante_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."EstudiantePorSeccion_estudiante_seq"', 4, true);
 
 
 --
 -- Name: EstudiantePorSeccion_id_porseccion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."EstudiantePorSeccion_id_porseccion_seq"', 5, true);
+SELECT pg_catalog.setval('public."EstudiantePorSeccion_id_porseccion_seq"', 7, true);
+
+
+--
+-- Name: EstudiantePorSeccion_seccion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."EstudiantePorSeccion_seccion_seq"', 4, true);
+
+
+--
+-- Name: Estudiante_carrera_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Estudiante_carrera_seq"', 3, true);
+
+
+--
+-- Name: Estudiante_id_estudiante_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Estudiante_id_estudiante_seq"', 3, true);
 
 
 --
@@ -367,6 +859,20 @@ SELECT pg_catalog.setval('public."EstudiantePorSeccion_id_porseccion_seq"', 5, t
 --
 
 SELECT pg_catalog.setval('public."Profesor_id_profesor_seq"', 4, true);
+
+
+--
+-- Name: Seccion_asignatura_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Seccion_asignatura_seq"', 4, true);
+
+
+--
+-- Name: Seccion_id_seccion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Seccion_id_seccion_seq"', 4, true);
 
 
 --
@@ -453,7 +959,7 @@ ALTER TABLE ONLY public."Seccion"
 --
 
 ALTER TABLE ONLY public."Seccion"
-    ADD CONSTRAINT asignatura FOREIGN KEY (asignatura) REFERENCES public."Asignatura"(id_asignatura);
+    ADD CONSTRAINT asignatura FOREIGN KEY (asignatura) REFERENCES public."Asignatura"(id_asignatura) NOT VALID;
 
 
 --
@@ -477,15 +983,7 @@ ALTER TABLE ONLY public."Estudiante"
 --
 
 ALTER TABLE ONLY public."Carrera"
-    ADD CONSTRAINT decanato FOREIGN KEY (decanato) REFERENCES public."Decanato"(id_decanato);
-
-
---
--- Name: Calificacion estudiante; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public."Calificacion"
-    ADD CONSTRAINT estudiante FOREIGN KEY (estudiante) REFERENCES public."Estudiante"(id_estudiante);
+    ADD CONSTRAINT decanato FOREIGN KEY (decanato) REFERENCES public."Decanato"(id_decanato) NOT VALID;
 
 
 --
@@ -493,7 +991,15 @@ ALTER TABLE ONLY public."Calificacion"
 --
 
 ALTER TABLE ONLY public."EstudiantePorSeccion"
-    ADD CONSTRAINT estudiante FOREIGN KEY (estudiante) REFERENCES public."Estudiante"(id_estudiante);
+    ADD CONSTRAINT estudiante FOREIGN KEY (estudiante) REFERENCES public."Estudiante"(id_estudiante) NOT VALID;
+
+
+--
+-- Name: Calificacion estudiante; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Calificacion"
+    ADD CONSTRAINT estudiante FOREIGN KEY (estudiante) REFERENCES public."Estudiante"(id_estudiante) NOT VALID;
 
 
 --
@@ -517,7 +1023,15 @@ ALTER TABLE ONLY public."Seccion"
 --
 
 ALTER TABLE ONLY public."EstudiantePorSeccion"
-    ADD CONSTRAINT seccion FOREIGN KEY (seccion) REFERENCES public."Seccion"(id_seccion);
+    ADD CONSTRAINT seccion FOREIGN KEY (seccion) REFERENCES public."Seccion"(id_seccion) NOT VALID;
+
+
+--
+-- Name: Calificacion seccion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Calificacion"
+    ADD CONSTRAINT seccion FOREIGN KEY (seccion) REFERENCES public."Seccion"(id_seccion) NOT VALID;
 
 
 --
