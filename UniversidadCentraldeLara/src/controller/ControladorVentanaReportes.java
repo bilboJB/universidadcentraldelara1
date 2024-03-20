@@ -10,6 +10,7 @@ public class ControladorVentanaReportes implements ActionListener {
 	private Menu menuPrincipal;
 	private ControladorVentanaListadoSeccion cListadoSeccion;
 	private ControladorVentanaListadoPorCarrera cListadoPorCarrera;
+	private ControladorVentanaPorGenero cPorGenero;
 	
 	public ControladorVentanaReportes() {
 		ventanaReportes = new VentanaReportes();
@@ -35,6 +36,13 @@ public class ControladorVentanaReportes implements ActionListener {
 		if (e.getActionCommand().equalsIgnoreCase("Listado de Estudiante por Carrera")) {
 			//para el boton listado de estudiantes por carrera
 			cListadoPorCarrera = new ControladorVentanaListadoPorCarrera();
+		}
+		
+		if (e.getActionCommand().equalsIgnoreCase("Listado de estudiantes por género de carrera y decanato")) {
+			//para el boton por genero
+			cPorGenero = new ControladorVentanaPorGenero();
+			ventanaReportes.setVisible(false);
+			cPorGenero.setMenuPrincipal(menuPrincipal);
 		}
 	}
 

@@ -23,7 +23,7 @@ public class VentanaReportes extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JButton btnEstudianteXCarr, btnMenuPrincipal, btnListadoSeccion;
+	private JButton btnEstudianteXCarr, btnMenuPrincipal, btnListadoSeccion, btnListadoGeneroCyD;
 
 	/**
 	 * Launch the application.
@@ -76,11 +76,11 @@ public class VentanaReportes extends JFrame {
 		btnEstudianteXSemestre.setBounds(486, 152, 376, 68);
 		panel.add(btnEstudianteXSemestre);
 		
-		JButton btnListadoSeccionPromdSecc = new JButton("Listado de las Secciones con Promedio de la Sección");
-		btnListadoSeccionPromdSecc.setIcon(new ImageIcon(VentanaReportes.class.getResource("/iconos/listados.png")));
-		btnListadoSeccionPromdSecc.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		btnListadoSeccionPromdSecc.setBounds(67, 242, 506, 68);
-		panel.add(btnListadoSeccionPromdSecc);
+		btnListadoGeneroCyD = new JButton("Listado de estudiantes por género de carrera y decanato");
+		btnListadoGeneroCyD.setIcon(new ImageIcon(VentanaReportes.class.getResource("/iconos/listados.png")));
+		btnListadoGeneroCyD.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		btnListadoGeneroCyD.setBounds(67, 242, 506, 68);
+		panel.add(btnListadoGeneroCyD);
 		
 		JButton btnRetiroAsig = new JButton("Listado de Retiro de Asignaturas");
 		btnRetiroAsig.setIcon(new ImageIcon(VentanaReportes.class.getResource("/iconos/listados.png")));
@@ -151,5 +151,6 @@ public class VentanaReportes extends JFrame {
 		btnEstudianteXCarr.addActionListener(actionListener);
 		btnMenuPrincipal.addActionListener(actionListener);
 		btnListadoSeccion.addActionListener(actionListener);
+		btnListadoGeneroCyD.addActionListener(actionListener);
 	}
 }
