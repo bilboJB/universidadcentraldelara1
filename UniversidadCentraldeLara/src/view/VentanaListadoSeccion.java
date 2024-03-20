@@ -27,10 +27,9 @@ public class VentanaListadoSeccion extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textSeccion;
 	private JTable table;
 	private DefaultTableModel modelo;
-	private JButton btnBuscarSeccion, btnGenerarListado, btnMenuPrincipal;
+	private JButton btnGenerarListado, btnMenuPrincipal;
 
 	/**
 	 * Launch the application.
@@ -71,27 +70,10 @@ public class VentanaListadoSeccion extends JFrame {
 		listadoSeccion.setBounds(239, 66, 564, 81);
 		panel.add(listadoSeccion);
 		
-		JLabel seccion = new JLabel("Sección:");
-		seccion.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		seccion.setBounds(344, 165, 81, 32);
-		panel.add(seccion);
-		
-		textSeccion = new JTextField();
-		textSeccion.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		textSeccion.setColumns(10);
-		textSeccion.setBackground(new Color(224, 255, 255));
-		textSeccion.setBounds(407, 165, 258, 32);
-		panel.add(textSeccion);
-		
-		btnBuscarSeccion = new JButton("");
-		btnBuscarSeccion.setIcon(new ImageIcon(VentanaListadoSeccion.class.getResource("/iconos/iconsLupa30.png")));
-		btnBuscarSeccion.setBounds(675, 165, 36, 32);
-		panel.add(btnBuscarSeccion);
-		
 		btnGenerarListado = new JButton("Generar Listado");
 		btnGenerarListado.setIcon(new ImageIcon(VentanaListadoSeccion.class.getResource("/iconos/iconsLista50.png")));
 		btnGenerarListado.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		btnGenerarListado.setBackground(Color.BLACK);
+		btnGenerarListado.setBackground(Color.LIGHT_GRAY);
 		btnGenerarListado.setBounds(356, 560, 355, 65);
 		panel.add(btnGenerarListado);
 		
@@ -107,11 +89,11 @@ public class VentanaListadoSeccion extends JFrame {
 				new Object[][] {
 				},
 				new String[] {
-					"Decanato", "Carrera", "Asignatura", "Docente", "Seccion"
+					"Decanato", "Carrera", "Asignatura", "Docente", "Seccion", "#Aprovados", "#Aplazados", "Encima promedio", "Debajo promedio"
 				}
 			) {
 				boolean[] columnEditables = new boolean[] {
-					false, false, false, false, false
+					false, false, false, false, false, false, false, false, false
 				};
 				public boolean isCellEditable(int row, int column) {
 					return columnEditables[column];
@@ -157,16 +139,11 @@ public class VentanaListadoSeccion extends JFrame {
 		this.modelo = modelo;
 	}
 
-	public JTextField getTextSeccion() {
-		return textSeccion;
-	}
-
 	public JTable getTable() {
 		return table;
 	}
 	
 	public void agregarListener(ActionListener actionListener) {
-		btnBuscarSeccion.addActionListener(actionListener);
 		btnGenerarListado.addActionListener(actionListener);
 		btnMenuPrincipal.addActionListener(actionListener);
 	}

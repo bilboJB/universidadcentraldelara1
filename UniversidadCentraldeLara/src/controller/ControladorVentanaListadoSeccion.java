@@ -84,7 +84,7 @@ public class ControladorVentanaListadoSeccion implements ActionListener {
 			con = DriverManager.getConnection(db.getUrl(),db.getUser(),db.getPassword());
 			//crea el statement sql
 			pS = con.prepareStatement("SELECT id_seccion FROM public.\"Seccion\" WHERE id_seccion = ?;");
-			pS.setString(1, listadoSeccion.getTextSeccion().getText());
+			pS.setString(1, "");
 			//se ejecuta el sql y se guarda el resultado
 			result = pS.executeQuery();
 			if(result.isBeforeFirst()) {
