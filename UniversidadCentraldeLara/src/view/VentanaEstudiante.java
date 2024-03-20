@@ -95,12 +95,12 @@ public class VentanaEstudiante extends JFrame {
 		
 		JButton btnMenuPrincipal = new JButton("Menu Principal");
 		btnMenuPrincipal.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		btnMenuPrincipal.setBackground(Color.BLACK);
+		btnMenuPrincipal.setBackground(Color.LIGHT_GRAY);
 		btnMenuPrincipal.setBounds(64, 11, 198, 28);
 		panel.add(btnMenuPrincipal);
 		
 		textCedula = new JTextField();
-		textCedula.setText("ingrese la cedula");
+		textCedula.setToolTipText("ingrese la cedula");
 		textCedula.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		textCedula.setColumns(10);
 		textCedula.setBackground(new Color(224, 255, 255));
@@ -128,7 +128,7 @@ public class VentanaEstudiante extends JFrame {
 		panel.add(lblApellido);
 		
 		textNombre = new JTextField();
-		textNombre.setText("ingrese el nombre");
+		textNombre.setToolTipText("ingrese el nombre");
 		textNombre.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		textNombre.setColumns(10);
 		textNombre.setBackground(new Color(224, 255, 255));
@@ -141,7 +141,7 @@ public class VentanaEstudiante extends JFrame {
 		panel.add(lblTelefono);
 		
 		textApellido = new JTextField();
-		textApellido.setText("ingrese el apellido");
+		textApellido.setToolTipText("ingrese el apellido");
 		textApellido.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		textApellido.setColumns(10);
 		textApellido.setBackground(new Color(224, 255, 255));
@@ -154,7 +154,7 @@ public class VentanaEstudiante extends JFrame {
 		panel.add(lblFechaNacimiento);
 		
 		textTelefono = new JTextField();
-		textTelefono.setText("ingrese el telefono");
+		textTelefono.setToolTipText("ingrese el telefono");
 		textTelefono.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		textTelefono.setColumns(10);
 		textTelefono.setBackground(new Color(224, 255, 255));
@@ -174,7 +174,7 @@ public class VentanaEstudiante extends JFrame {
 		panel.add(lblGenero);
 		
 		textSeccion = new JTextField();
-		textSeccion.setText("ingrese la seccion");
+		textSeccion.setToolTipText("ingrese la seccion");
 		textSeccion.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		textSeccion.setColumns(10);
 		textSeccion.setBackground(new Color(224, 255, 255));
@@ -186,42 +186,36 @@ public class VentanaEstudiante extends JFrame {
 		lblSeccion.setBounds(37, 588, 94, 24);
 		panel.add(lblSeccion);
 		
-		JButton btnActualizar = new JButton("");
-		btnActualizar.setIcon(new ImageIcon(VentanaEstudiante.class.getResource("/iconos/iconsActualizar50.png")));
-		btnActualizar.setFont(new Font("Segoe UI", Font.BOLD, 26));
-		btnActualizar.setBackground(Color.BLACK);
-		btnActualizar.setBounds(397, 344, 100, 53);
-		panel.add(btnActualizar);
-		
 		JButton btnModificar = new JButton("");
 		btnModificar.setIcon(new ImageIcon(VentanaEstudiante.class.getResource("/iconos/iconsEditar50.png")));
 		btnModificar.setFont(new Font("Segoe UI", Font.BOLD, 26));
-		btnModificar.setBackground(Color.BLACK);
+		btnModificar.setBackground(Color.LIGHT_GRAY);
 		btnModificar.setBounds(397, 266, 100, 53);
 		panel.add(btnModificar);
 		
 		JButton btnGuardar = new JButton("");
 		btnGuardar.setIcon(new ImageIcon(VentanaEstudiante.class.getResource("/iconos/iconGuardar.png")));
 		btnGuardar.setFont(new Font("Segoe UI", Font.BOLD, 26));
-		btnGuardar.setBackground(Color.BLACK);
+		btnGuardar.setBackground(Color.LIGHT_GRAY);
 		btnGuardar.setBounds(397, 185, 100, 53);
 		panel.add(btnGuardar);
 		
 		JButton btnEliminar = new JButton("");
 		btnEliminar.setIcon(new ImageIcon(VentanaEstudiante.class.getResource("/iconos/iconsEliminar50.png")));
 		btnEliminar.setFont(new Font("Segoe UI", Font.BOLD, 26));
-		btnEliminar.setBackground(Color.BLACK);
+		btnEliminar.setBackground(Color.LIGHT_GRAY);
 		btnEliminar.setBounds(397, 505, 100, 53);
 		panel.add(btnEliminar);
 		
 		JButton btnLimpiar = new JButton("");
 		btnLimpiar.setIcon(new ImageIcon(VentanaEstudiante.class.getResource("/iconos/iconsLimpiar50.png")));
 		btnLimpiar.setFont(new Font("Segoe UI", Font.BOLD, 26));
-		btnLimpiar.setBackground(Color.BLACK);
+		btnLimpiar.setBackground(Color.LIGHT_GRAY);
 		btnLimpiar.setBounds(397, 424, 100, 53);
 		panel.add(btnLimpiar);
 		
 		JDateChooser dateChooserFechaNac = new JDateChooser();
+		dateChooserFechaNac.setDateFormatString("YY-MM-dd");
 		dateChooserFechaNac.setBounds(47, 466, 203, 28);
 		panel.add(dateChooserFechaNac);
 		
