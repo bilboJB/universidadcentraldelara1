@@ -34,31 +34,31 @@ public class ControladorVentanaMenu implements ActionListener{
 		if(e.getActionCommand().equalsIgnoreCase("Estudiante")) {
 			//para el boton estudiante
 			cVentanaEstudiante = new ControladorVentanaEstudiante();
-			menu.setVisible(false);
+			//menu.setVisible(false);
 		}
 
 		if(e.getActionCommand().equalsIgnoreCase("Profesor")) {
 			//para el boton profesor
 			cVentanaProfesor = new ControladorVentanaProfesor();
-			menu.setVisible(false);
+			//menu.setVisible(false);
 		}
 		
 		if(e.getActionCommand().equalsIgnoreCase("Carrera")) {
 			//para el boton carrera
 			cVentanaCarrera = new ControladorVentanaCarrera();
-			menu.setVisible(false);
+			//menu.setVisible(false);
 		}
 		
 		if(e.getActionCommand().equalsIgnoreCase("Asignatura")) {
 			//para el boton asignatura
 			cVentanaAsignatura = new ControladorVentanaAsignatura();
-			menu.setVisible(false);
+			//menu.setVisible(false);
 		}
 
 		if(e.getActionCommand().equalsIgnoreCase("Sección")) {
 			//para el boton seccion
 			cVentanaSeccion = new ControladorVentanaSeccion();
-			menu.setVisible(false);
+			//menu.setVisible(false);
 		}
 		
 		if(e.getActionCommand().equalsIgnoreCase("Notas")) {
@@ -71,6 +71,7 @@ public class ControladorVentanaMenu implements ActionListener{
 			//para el boton reportes
 			cVentanaReportes = new ControladorVentanaReportes();
 			menu.setVisible(false);
+			cVentanaReportes.setMenuPrincipal(menu);
 		}
 	}
 

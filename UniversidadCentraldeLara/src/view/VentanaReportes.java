@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -21,6 +23,7 @@ public class VentanaReportes extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JButton btnEstudianteXCarr, btnMenuPrincipal, btnListadoSeccion;
 
 	/**
 	 * Launch the application.
@@ -61,7 +64,7 @@ public class VentanaReportes extends JFrame {
 		reportes.setBounds(30, 40, 390, 81);
 		panel.add(reportes);
 		
-		JButton btnEstudianteXCarr = new JButton("Listado de Estudiante por Carrera");
+		btnEstudianteXCarr = new JButton("Listado de Estudiante por Carrera");
 		btnEstudianteXCarr.setIcon(new ImageIcon(VentanaReportes.class.getResource("/iconos/listados.png")));
 		btnEstudianteXCarr.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		btnEstudianteXCarr.setBounds(67, 152, 353, 68);
@@ -120,13 +123,13 @@ public class VentanaReportes extends JFrame {
 		btnMinimizar.setBounds(902, 11, 44, 29);
 		panel.add(btnMinimizar);
 		
-		JButton btnMenuPrincipal = new JButton("Menu Principal");
-		btnMenuPrincipal.setBackground(new Color(0, 0, 0));
+		btnMenuPrincipal = new JButton("Menu Principal");
+		btnMenuPrincipal.setBackground(Color.LIGHT_GRAY);
 		btnMenuPrincipal.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		btnMenuPrincipal.setBounds(67, 11, 198, 28);
 		panel.add(btnMenuPrincipal);
 		
-		JButton btnListadoSeccion = new JButton("Listado por Sección");
+		btnListadoSeccion = new JButton("Listado por Sección");
 		btnListadoSeccion.setIcon(new ImageIcon(VentanaReportes.class.getResource("/iconos/listados.png")));
 		btnListadoSeccion.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		btnListadoSeccion.setBounds(67, 321, 264, 68);
@@ -142,5 +145,11 @@ public class VentanaReportes extends JFrame {
 		fondo.setIcon(new ImageIcon(VentanaReportes.class.getResource("/iconos/fondoMenu.jpg")));
 		fondo.setBounds(0, 0, 1014, 661);
 		panel.add(fondo);
+	}
+	
+	public void agregarListener(ActionListener actionListener) {
+		btnEstudianteXCarr.addActionListener(actionListener);
+		btnMenuPrincipal.addActionListener(actionListener);
+		btnListadoSeccion.addActionListener(actionListener);
 	}
 }

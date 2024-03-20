@@ -77,7 +77,7 @@ public class VentanaListadoPorCarrera extends JFrame {
 		txtCarrera = new JTextField();
 		txtCarrera.setPreferredSize(new Dimension(450,25));
 		panel_2.add(txtCarrera);
-		txtCarrera.setColumns(10);
+		txtCarrera.setColumns(30);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane);

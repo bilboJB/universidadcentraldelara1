@@ -17,17 +17,19 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-import view.ListadoSeccion;
+import view.VentanaListadoSeccion;
+import view.Menu;
 import view.VentanaInscripcion;
 
 public class ControladorVentanaListadoSeccion implements ActionListener {
 	private DbCon db;
-	private ListadoSeccion listadoSeccion;
+	private VentanaListadoSeccion listadoSeccion;
 	private String seccion;
+	private Menu menu;
 	
 	public ControladorVentanaListadoSeccion() {
 		db = new DbCon();
-		listadoSeccion = new ListadoSeccion();
+		listadoSeccion = new VentanaListadoSeccion();
 		listadoSeccion.setVisible(true);
 		listadoSeccion.agregarListener(this);
 		seccion = "";
@@ -35,6 +37,11 @@ public class ControladorVentanaListadoSeccion implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if (e.getActionCommand().equalsIgnoreCase("Menu Principal")) {
+			listadoSeccion.setVisible(false);
+			menu.setVisible(true);
+		}
+		
 		if(e.getActionCommand().equalsIgnoreCase("")) {
 			//para el boton buscar seccion
 			if(buscarSeccion()) {
@@ -127,5 +134,9 @@ public class ControladorVentanaListadoSeccion implements ActionListener {
 		    try { if (con != null) con.close(); } catch (Exception ex) {};
 		}
 		listadoSeccion.getTable().setModel(listadoSeccion.getModelo());
+	}
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 }
