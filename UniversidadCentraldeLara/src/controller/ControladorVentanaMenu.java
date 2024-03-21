@@ -46,7 +46,8 @@ public class ControladorVentanaMenu implements ActionListener{
 		if(e.getActionCommand().equalsIgnoreCase("Carrera")) {
 			//para el boton carrera
 			cVentanaCarrera = new ControladorVentanaCarrera();
-			//menu.setVisible(false);
+			menu.setVisible(false);
+			cVentanaCarrera.setMenuPrincipal(menu);
 		}
 		
 		if(e.getActionCommand().equalsIgnoreCase("Asignatura")) {

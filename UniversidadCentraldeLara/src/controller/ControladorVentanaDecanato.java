@@ -132,7 +132,7 @@ public class ControladorVentanaDecanato implements ActionListener {
 				JOptionPane.showMessageDialog(ventanaDecanato, "Escoja decanatos a eliminar");
 				return;
 			}
-			int respuesta = JOptionPane.showConfirmDialog(ventanaDecanato, "Esta seguro que quiere eliminar, no podra deshacer esta acción", "Confirmación eliminación" ,JOptionPane.YES_NO_OPTION);
+			int respuesta = JOptionPane.showConfirmDialog(ventanaDecanato, "Esta seguro que quiere eliminar, no podra deshacer esta acción", "Confirmar eliminación" ,JOptionPane.YES_NO_OPTION);
 			if (respuesta == JOptionPane.YES_OPTION) {
 				int id_decanato = 0;
 				for(Entry<Integer, Decanato> dec : decanatos.entrySet()) {
