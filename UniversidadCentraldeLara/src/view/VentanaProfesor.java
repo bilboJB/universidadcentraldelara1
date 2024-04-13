@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import bean.BotonSwitch;
 
 public class VentanaProfesor extends JFrame {
 
@@ -200,10 +201,13 @@ public class VentanaProfesor extends JFrame {
 		btnEliminar.setBounds(461, 561, 94, 65);
 		panel.add(btnEliminar);
 		
+		BotonSwitch botonSwitch = new BotonSwitch();
+		botonSwitch.setBounds(401, 92, 50, 25);
+		panel.add(botonSwitch);
+		
 		JLabel fondo = new JLabel("");
 		fondo.setIcon(new ImageIcon(VentanaProfesor.class.getResource("/iconos/fondoMenu.jpg")));
 		fondo.setBounds(0, 0, 1014, 661);
 		panel.add(fondo);
 	}
-
 }
